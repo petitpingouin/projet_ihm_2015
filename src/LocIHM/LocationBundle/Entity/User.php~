@@ -5,12 +5,12 @@ namespace LocIHM\LocationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Personne
+ * User
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="LocIHM\LocationBundle\Entity\PersonneRepository")
+ * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="LocIHM\LocationBundle\Entity\UserRepository")
  */
-class Personne
+class User
 {
     /**
      * @var integer
@@ -19,7 +19,7 @@ class Personne
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -66,13 +66,6 @@ class Personne
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="CBnum", type="text")
      */
     private $cBnum;
@@ -99,18 +92,25 @@ class Personne
     private $ptsFidelite;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp", type="string", length=255)
-     */
-    private $mdp;
-
-    /**
-     * @ORM\OneToMany(targetEntity="LocIHM\LocationBundle\Entity\Contrat", mappedBy="personne")
+     * @ORM\OneToMany(targetEntity="LocIHM\LocationBundle\Entity\Contrat", mappedBy="user")
      */
     private $contrats;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="LocIHM\LocationBundle\Entity\Agence", cascade={"persist"}, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $agence;
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct(); // Class BaseUser
+        $this->contrats = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -126,7 +126,7 @@ class Personne
      * Set nom
      *
      * @param string $nom
-     * @return Personne
+     * @return User
      */
     public function setNom($nom)
     {
@@ -149,7 +149,7 @@ class Personne
      * Set prenom
      *
      * @param string $prenom
-     * @return Personne
+     * @return User
      */
     public function setPrenom($prenom)
     {
@@ -172,7 +172,7 @@ class Personne
      * Set dateNaissance
      *
      * @param \DateTime $dateNaissance
-     * @return Personne
+     * @return User
      */
     public function setDateNaissance($dateNaissance)
     {
@@ -195,7 +195,7 @@ class Personne
      * Set adresse
      *
      * @param string $adresse
-     * @return Personne
+     * @return User
      */
     public function setAdresse($adresse)
     {
@@ -218,7 +218,7 @@ class Personne
      * Set tel1
      *
      * @param string $tel1
-     * @return Personne
+     * @return User
      */
     public function setTel1($tel1)
     {
@@ -241,7 +241,7 @@ class Personne
      * Set tel2
      *
      * @param string $tel2
-     * @return Personne
+     * @return User
      */
     public function setTel2($tel2)
     {
@@ -264,7 +264,7 @@ class Personne
      * Set email
      *
      * @param string $email
-     * @return Personne
+     * @return User
      */
     public function setEmail($email)
     {
@@ -287,7 +287,7 @@ class Personne
      * Set cBnum
      *
      * @param string $cBnum
-     * @return Personne
+     * @return User
      */
     public function setCBnum($cBnum)
     {
@@ -310,7 +310,7 @@ class Personne
      * Set cBdateExp
      *
      * @param string $cBdateExp
-     * @return Personne
+     * @return User
      */
     public function setCBdateExp($cBdateExp)
     {
@@ -333,7 +333,7 @@ class Personne
      * Set cBCrypto
      *
      * @param string $cBCrypto
-     * @return Personne
+     * @return User
      */
     public function setCBCrypto($cBCrypto)
     {
@@ -356,7 +356,7 @@ class Personne
      * Set ptsFidelite
      *
      * @param integer $ptsFidelite
-     * @return Personne
+     * @return User
      */
     public function setPtsFidelite($ptsFidelite)
     {
@@ -379,7 +379,7 @@ class Personne
      * Set mdp
      *
      * @param string $mdp
-     * @return Personne
+     * @return User
      */
     public function setMdp($mdp)
     {
@@ -399,24 +399,16 @@ class Personne
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->contrats = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Add contrats
      *
      * @param \LocIHM\LocationBundle\Entity\Contrat $contrats
-     * @return Personne
+     * @return User
      */
     public function addContrat(\LocIHM\LocationBundle\Entity\Contrat $contrat)
     {
         $this->contrats[] = $contrat;
 
-        $contrat->setPersonne($this);
+        $contrat->setUser($this);
 
         return $this;
     }

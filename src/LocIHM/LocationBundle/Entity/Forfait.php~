@@ -48,14 +48,6 @@ class Forfait
     private $contrats;
 
     /**
-    * Constructor
-    */
-    public function __construct()
-    {
-        $this->contrats = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return integer 
@@ -132,39 +124,5 @@ class Forfait
     public function getPrix()
     {
         return $this->prix;
-    }
-
-    /**
-     * Add contrats
-     *
-     * @param \LocIHM\LocationBundle\Entity\Vehicule $contrats
-     * @return Forfait
-     */
-    public function addContrat(\LocIHM\LocationBundle\Entity\Vehicule $contrat)
-    {
-        $this->contrats[] = $contrat;
-        $contrat->setForfait($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove contrats
-     *
-     * @param \LocIHM\LocationBundle\Entity\Vehicule $contrats
-     */
-    public function removeContrat(\LocIHM\LocationBundle\Entity\Vehicule $contrats)
-    {
-        $this->contrats->removeElement($contrats);
-    }
-
-    /**
-     * Get contrats
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getContrats()
-    {
-        return $this->contrats;
     }
 }

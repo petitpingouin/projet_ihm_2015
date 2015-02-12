@@ -49,14 +49,6 @@ class Agence
 
 
     /**
-    * Constructor
-    */
-    public function __construct()
-    {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return integer 
@@ -133,39 +125,5 @@ class Agence
     public function getCoordonnees()
     {
         return $this->coordonnees;
-    }
-
-    /**
-     * Add users
-     *
-     * @param \LocIHM\LocationBundle\Entity\User $users
-     * @return Agence
-     */
-    public function addUser(\LocIHM\LocationBundle\Entity\User $user)
-    {
-        $this->users[] = $user;
-        $user->setAgence($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove users
-     *
-     * @param \LocIHM\LocationBundle\Entity\User $users
-     */
-    public function removeUser(\LocIHM\LocationBundle\Entity\User $users)
-    {
-        $this->users->removeElement($users);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
     }
 }

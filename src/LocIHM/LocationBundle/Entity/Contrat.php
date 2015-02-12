@@ -36,10 +36,10 @@ class Contrat
     private $dateFin;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LocIHM\LocationBundle\Entity\Personne", cascade={"persist"}, inversedBy="contrats")
+     * @ORM\ManyToOne(targetEntity="LocIHM\LocationBundle\Entity\User", cascade={"persist"}, inversedBy="contrats")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $personne;
+    private $user;
 
     /**
      * @ORM\OneToOne(targetEntity="LocIHM\LocationBundle\Entity\Vehicule", cascade={"persist"})
@@ -48,7 +48,7 @@ class Contrat
     private $vehicule;
 
     /**
-     * @ORM\OneToOne(targetEntity="LocIHM\LocationBundle\Entity\Forfait", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="LocIHM\LocationBundle\Entity\Forfait", cascade={"persist"}, inversedBy="contrats")
      * @ORM\JoinColumn(nullable=false)
      */
     private $forfait;
@@ -110,26 +110,26 @@ class Contrat
     }
 
     /**
-     * Set personne
+     * Set user
      *
-     * @param \LocIHM\LocationBundle\Entity\Personne $personne
+     * @param \LocIHM\LocationBundle\Entity\User $user
      * @return Contrat
      */
-    public function setPersonne(\LocIHM\LocationBundle\Entity\Personne $personne)
+    public function setUser(\LocIHM\LocationBundle\Entity\User $user)
     {
-        $this->personne = $personne;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get personne
+     * Get user
      *
-     * @return \LocIHM\LocationBundle\Entity\Personne 
+     * @return \LocIHM\LocationBundle\Entity\user 
      */
-    public function getPersonne()
+    public function getuser()
     {
-        return $this->personne;
+        return $this->user;
     }
 
     /**

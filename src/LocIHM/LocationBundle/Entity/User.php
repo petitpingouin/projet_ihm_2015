@@ -3,6 +3,7 @@
 namespace LocIHM\LocationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="fos_user")
  * @ORM\Entity(repositoryClass="LocIHM\LocationBundle\Entity\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -24,70 +25,70 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_naissance", type="date")
+     * @ORM\Column(name="date_naissance", type="date", nullable=true)
      */
     private $dateNaissance;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255)
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tel1", type="string", length=255)
+     * @ORM\Column(name="tel1", type="string", length=255, nullable=true)
      */
     private $tel1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tel2", type="string", length=255)
+     * @ORM\Column(name="tel2", type="string", length=255, nullable=true)
      */
     private $tel2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="CBnum", type="text")
+     * @ORM\Column(name="CBnum", type="text", nullable=true)
      */
     private $cBnum;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="CBdateExp", type="text")
+     * @ORM\Column(name="CBdateExp", type="text", nullable=true)
      */
     private $cBdateExp;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="CBCrypto", type="text")
+     * @ORM\Column(name="CBCrypto", type="text", nullable=true)
      */
     private $cBCrypto;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="pts_fidelite", type="integer")
+     * @ORM\Column(name="pts_fidelite", type="integer", nullable=true)
      */
     private $ptsFidelite;
 

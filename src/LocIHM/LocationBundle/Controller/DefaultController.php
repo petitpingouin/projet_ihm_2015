@@ -3,11 +3,13 @@
 namespace LocIHM\LocationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+	// ACCUEIL
+    public function indexAction()
     {
-        return $this->render('LocIHMLocationBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('LocIHMLocationBundle:Default:layout.html.twig');
     }
 }

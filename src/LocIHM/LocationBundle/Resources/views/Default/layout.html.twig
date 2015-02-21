@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+	<meta charset="utf-8" />
+	<title>Prêt à voyager ?</title>
+	<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/foundation.css')}}" />
+	<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/foundation-datepicker.css')}}" />
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"><!-- Icones DatePicker -->
+	<script src="{{asset('bundles/LocationBundle/js/vendor/modernizr.js')}}"></script>
+	<!-- A nous -->
+	<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/default.css')}}"/>
+  </head>
+  <body>
+	
+  <!-- TOP BAR --> 
+<div class="sticky">
+	<nav class="top-bar" data-topbar role="navigation">
+	<ul class="title-area">
+		<li class="name">
+			<h1><a href="#">Loc IHM</a></h1>
+		</li>
+	</ul>
+	</nav>
+</div>
+
+<!-- Header -->
+
+<div class="row">
+	<div class="small-12 columns">
+		<h1>Loc IHM</h1>
+		<img src="{{asset('bundles/LocationBundle/img/accueil-top.png')}}" alt="Img Accueil"/>
+	</div>
+</div>
+	
+<div class="row">
+	<div class="small-12 columns">
+		<div class="panel">
+			<h3>Partez sans vous soucier du reste !</h3>
+			<p>Basée à Nantes, LocIHM vous propose un ensemble de véhicules haut de gamme choyés par nos équipes pour vous emmener là où vous le voudrez !</p>
+			<p>Profitez aussi d'une large gamme de véhicules utilitaires</p>
+			<div class="row">
+				<div class="large-4 medium-4 columns">
+					<p><strong>Fiable</strong><br />Nos véhicules sont entretenus par nos soins, pour vous.</p>
+				</div>
+				<div class="large-4 medium-4 columns">
+					<p><strong>Impécables</strong><br />Polis comme de vrais bijoux</p>
+				</div>
+				<div class="large-4 medium-4 columns">
+					<p><strong>Efficace</strong><br />Un problème ? Pas de problème, notre service assistance s'occupe de vous dépanner le plus vite possible.</p>
+				</div>        
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 columns">
+
+		<h3>Réservez maintenant votre véhicule</h3>
+
+		<form method="post" action="" id="form_reserv">
+			<div class="row">
+				<div class="small-12 columns">
+					<label>Choisissez votre type de véhicule</label>
+					<input type="radio" name="vehType" value="tourisme" id="vehTypeTourisme"/><label for="vehTypeTourisme">Tourisme</label>
+					<input type="radio" name="vehType" value="utilitaire" id="vehTypeUtilitaire"/><label for="vehTypeUtilitaire">Utilitaires</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 large-6 medium-6 columns">
+					<label for="vehCat">Catégorie</label>
+					<select id="vehCat" name="vehCat">
+						<option value="One">One</option>
+						<option value="Two">Two</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-6 column">
+					<label>Date de départ: </label>
+					<input type="text" class="span2" value="" id="vehDate1"/>
+				</div>
+				<div class="small-6 column">
+					<label>Date de retour: </label>
+					<input type="text" class="span2" value="" id="vehDate2"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12">
+				</div>
+			</div>
+
+			<input type="submit" id="vehSubmit" value="Trouver mon véhicule" class="button"/>
+		</form>
+	</div>
+</div>
+
+<!-- Footer -->
+<div class="row">
+	<div class="small-12 column">
+		<div class="footer">
+			<p>-- LocIHM --<br/>Créé par LESPINASSE - TISSIER</p>
+		</div>
+	</div>
+</div>
+	
+	<script src="{{asset('bundles/LocationBundle/js/vendor/jquery.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/foundation.min.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/foundation/foundation.topbar.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/vendor/datepicker.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/default.js')}}"></script>
+  </body>
+</html>

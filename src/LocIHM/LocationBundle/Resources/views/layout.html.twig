@@ -1,0 +1,54 @@
+{# src/OC/PlatformBundle/Resources/views/layout.html.twig #}
+
+<!doctype html>
+<html class="no-js" lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>{% block title %}Loc IHM |{% endblock %}</title>
+
+		{% block css %}
+			<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/foundation.css')}}" />
+			<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/foundation-datepicker.css')}}" />
+			<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"><!-- Icones DatePicker -->
+
+			<!-- A nous -->
+			<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/default.css')}}"/>
+		{% endblock %}
+	</head>
+<body>
+
+<!-- TOP BAR --> 
+<div class="sticky">
+	<nav class="top-bar "data-topbar role="navigation">
+	<ul class="title-area">
+		<li class="name">
+			<h1><a href="#">Loc IHM</a></h1>
+		</li>
+	</ul>
+	</nav>
+</div>
+
+{% block body %}
+{% endblock %}
+
+<!-- Footer -->
+{% block footer %}
+	<div class="row">
+		<div class="small-12 column">
+			<div class="footer">
+				<p>-- LocIHM --<br/>Créé par LESPINASSE - TISSIER</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	
+
+	<script src="{{asset('bundles/LocationBundle/js/vendor/jquery.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/vendor/modernizr.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/foundation.min.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/foundation/foundation.topbar.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/vendor/datepicker.js')}}"></script>
+	<script src="{{asset('bundles/LocationBundle/js/default.js')}}"></script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{# src/OC/PlatformBundle/Resources/views/Default/form_reserv.html.twig #}
+
+<form method="post" action="" id="form_reserv">
+			<div class="row">
+				<div class="small-12 columns">
+					<label>Choisissez votre type de véhicule</label>
+					<input type="radio" name="vehType" value="tourisme" id="vehTypeTourisme"/><label for="vehTypeTourisme">Tourisme</label>
+					<input type="radio" name="vehType" value="utilitaire" id="vehTypeUtilitaire"/><label for="vehTypeUtilitaire">Utilitaires</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 large-6 medium-6 columns">
+					<label for="vehCat">Catégorie</label>
+					<select id="vehCat" name="vehCat">
+						<option value="One">One</option>
+						<option value="Two">Two</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-6 column">
+					<label>Date de départ: </label>
+					<input type="text" class="span2" value="" id="vehDate1"/>
+				</div>
+				<div class="small-6 column">
+					<label>Date de retour: </label>
+					<input type="text" class="span2" value="" id="vehDate2"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12">
+				</div>
+			</div>
+
+			<input type="submit" id="vehSubmit" value="Trouver mon véhicule" class="button"/>
+		</form>

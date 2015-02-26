@@ -10,6 +10,6 @@ class DefaultController extends Controller
 	// ACCUEIL
     public function indexAction()
     {
-        return $this->render('LocIHMLocationBundle:Default:layout.html.twig');
+        return $this->render('LocIHMLocationBundle:Default:index.html.twig');
     }
 }

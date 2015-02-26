@@ -1,7 +1,52 @@
 {# src/OC/PlatformBundle/Resources/views/Default/index.html.twig #}
 
-<html>
-  <body>
-    Hello {{ name }}!
-  </body>
-</html>
+{% extends "LocIHMLocationBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+	
+	<!-- Header -->
+	<div class="row">
+		<div class="small-12 columns">
+			<h1>Loc IHM</h1>
+			<img src="{{asset('bundles/LocationBundle/img/accueil-top.png')}}" alt="Img Accueil"/>
+		</div>
+	</div>
+	
+	<!-- Corps -->
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="panel">
+				<h3>Partez sans vous soucier du reste !</h3>
+				<p>Basée à Nantes, LocIHM vous propose un ensemble de véhicules haut de gamme choyés par nos équipes pour vous emmener là où vous le voudrez !</p>
+				<p>Profitez aussi d'une large gamme de véhicules utilitaires</p>
+				<div class="row">
+					<div class="large-4 medium-4 columns">
+						<p><strong>Fiable</strong><br />Nos véhicules sont entretenus par nos soins, pour vous.</p>
+					</div>
+					<div class="large-4 medium-4 columns">
+						<p><strong>Impécables</strong><br />Polis comme de vrais bijoux</p>
+					</div>
+					<div class="large-4 medium-4 columns">
+						<p><strong>Efficace</strong><br />Un problème ? Pas de problème, notre service assistance s'occupe de vous dépanner le plus vite possible.</p>
+					</div>        
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Form recherche -->
+	<div class="row">
+		<div class="small-12 columns">
+
+			<h3>Réservez maintenant votre véhicule</h3>
+			{{ include("LocIHMLocationBundle:Default:form_reserv.html.twig") }}
+			
+		</div>
+	</div>
+
+{% endblock %}

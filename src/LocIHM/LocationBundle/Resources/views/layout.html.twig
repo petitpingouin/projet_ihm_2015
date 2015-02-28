@@ -17,19 +17,39 @@
 	</head>
 <body>
 
+
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+        <div class="flash-{{ type }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
 <!-- TOP BAR --> 
 <div class="sticky">
 	<nav class="top-bar "data-topbar role="navigation">
 	<ul class="title-area">
 		<li class="name">
-			<h1><a href="#">Loc IHM</a></h1>
+			<h1><a href="{{ path('loc_ihm_location_homepage',{}) }}">Loc IHM</a></h1>
 		</li>
 	</ul>
+
+	<section class="top-bar-section">
+		<!-- Right -->
+		<ul class="right">
+			<li class="divider"></li>
+			{% include "LocIHMLocationBundle::connexion.html.twig" %}
+
+		</ul>
+	</section>
 	</nav>
 </div>
 
-{% block body %}
-{% endblock %}
+<div id="content">
+	{% block body %}
+		{% block fos_user_content %}{% endblock %}
+	{% endblock %}
+</div>
 
 <!-- Footer -->
 {% block footer %}

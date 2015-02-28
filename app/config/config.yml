@@ -80,3 +80,6 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: LocIHM\LocationBundle\Entity\User
+    registration:
+        form:
+            type: locihm_location_registration

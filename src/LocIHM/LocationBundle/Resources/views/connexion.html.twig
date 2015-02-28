@@ -1,0 +1,26 @@
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	{# Utilisateur connecté #}
+	<li>
+		<a href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+	</li>
+	<li class="divider"></li>
+	<li class="has-form">
+		<a href="{{ path('fos_user_security_logout') }}" class="button">{{ 'layout.logout'|trans([], 'FOSUserBundle') }}</a>
+	</li>
+{% else %}
+	<li class="has-form">
+		<a href="{{ path('fos_user_security_login') }}" class="button" data-dropdown="drop">{{ 'layout.login'|trans([], 'FOSUserBundle') }}</a>
+	</li>
+	<li class="divider"></li>
+	<li class="has-form">
+		<a href="{{ path('fos_user_registration_register') }}" class="button">{{ 'layout.register'|trans([], 'FOSUserBundle') }}</a>
+	</li>
+{% endif %}
+
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+        <div class="flash-{{ type }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}

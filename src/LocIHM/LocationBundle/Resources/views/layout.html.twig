@@ -17,14 +17,6 @@
 	</head>
 <body>
 
-
-{% for type, messages in app.session.flashbag.all() %}
-    {% for message in messages %}
-        <div class="flash-{{ type }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}
 <!-- TOP BAR --> 
 <div class="sticky">
 	<nav class="top-bar "data-topbar role="navigation">
@@ -46,7 +38,20 @@
 </div>
 
 <div id="content">
-	{% block body %}
+
+	<div class="row">
+		<div class="small-12 columns">
+			{% for type, messages in app.session.flashbag.all() %}
+			    {% for message in messages %}
+			        <div data-alert class="flash-{{ type }} alert-box success">
+			            {{ message }}
+			        </div>
+			    {% endfor %}
+			{% endfor %}
+		</div>
+	</div>
+
+	{% block corps %}
 		{% block fos_user_content %}{% endblock %}
 	{% endblock %}
 </div>
@@ -56,7 +61,7 @@
 	<div class="row">
 		<div class="small-12 column">
 			<div class="footer">
-				<p>-- LocIHM --<br/>Créé par LESPINASSE - TISSIER</p>
+				<p>-- LocIHM --<br/></p>
 			</div>
 		</div>
 	</div>

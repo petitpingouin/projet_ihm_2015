@@ -99,7 +99,6 @@ class User extends BaseUser
 
     /**
      * @ORM\ManyToOne(targetEntity="LocIHM\LocationBundle\Entity\Agence", cascade={"persist"}, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $agence;
 

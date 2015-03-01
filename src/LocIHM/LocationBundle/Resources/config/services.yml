@@ -1,5 +1,6 @@
 services:
     locihm_location.registration.form.type:
         class: LocIHM\LocationBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: locihm_location_registration }

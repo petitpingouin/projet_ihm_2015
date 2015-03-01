@@ -1,0 +1,12 @@
+{# src/LocIHM/LocationBundle/REsources/views/Form/fiels.html.twig #}
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+	    <small class="error">
+		    
+		        {%- for error in errors -%}
+		            {{ error.message }}<br/>
+		        {%- endfor -%}
+		    
+		</small>
+    {%- endif -%}
+{%- endblock form_errors -%}

@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Vehicule</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ entity.marque }}</td>
+            </tr>
+            <tr>
+                <th>Modele</th>
+                <td>{{ entity.modele }}</td>
+            </tr>
+            <tr>
+                <th>Puissance</th>
+                <td>{{ entity.puissance }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ entity.couleur }}</td>
+            </tr>
+            <tr>
+                <th>Prixjournalier</th>
+                <td>{{ entity.prixJournalier }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('vehicule') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('vehicule_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

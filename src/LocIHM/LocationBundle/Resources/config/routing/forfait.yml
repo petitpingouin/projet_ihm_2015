@@ -1,0 +1,30 @@
+forfait:
+    path:     /
+    defaults: { _controller: "LocIHMLocationBundle:Forfait:index" }
+
+forfait_show:
+    path:     /{id}/show
+    defaults: { _controller: "LocIHMLocationBundle:Forfait:show" }
+
+forfait_new:
+    path:     /new
+    defaults: { _controller: "LocIHMLocationBundle:Forfait:new" }
+
+forfait_create:
+    path:     /create
+    defaults: { _controller: "LocIHMLocationBundle:Forfait:create" }
+    methods:  POST
+
+forfait_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LocIHMLocationBundle:Forfait:edit" }
+
+forfait_update:
+    path:     /{id}/update
+    defaults: { _controller: "LocIHMLocationBundle:Forfait:update" }
+    methods:  [POST, PUT]
+
+forfait_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LocIHMLocationBundle:Forfait:delete" }
+    methods:  [POST, DELETE]

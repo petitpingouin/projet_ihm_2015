@@ -1,0 +1,30 @@
+contrat:
+    path:     /
+    defaults: { _controller: "LocIHMLocationBundle:Contrat:index" }
+
+contrat_show:
+    path:     /{id}/show
+    defaults: { _controller: "LocIHMLocationBundle:Contrat:show" }
+
+contrat_new:
+    path:     /new
+    defaults: { _controller: "LocIHMLocationBundle:Contrat:new" }
+
+contrat_create:
+    path:     /create
+    defaults: { _controller: "LocIHMLocationBundle:Contrat:create" }
+    methods:  POST
+
+contrat_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LocIHMLocationBundle:Contrat:edit" }
+
+contrat_update:
+    path:     /{id}/update
+    defaults: { _controller: "LocIHMLocationBundle:Contrat:update" }
+    methods:  [POST, PUT]
+
+contrat_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LocIHMLocationBundle:Contrat:delete" }
+    methods:  [POST, DELETE]

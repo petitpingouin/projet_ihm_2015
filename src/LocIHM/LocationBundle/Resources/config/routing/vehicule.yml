@@ -1,0 +1,30 @@
+vehicule:
+    path:     /
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:index" }
+
+vehicule_show:
+    path:     /{id}/show
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:show" }
+
+vehicule_new:
+    path:     /new
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:new" }
+
+vehicule_create:
+    path:     /create
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:create" }
+    methods:  POST
+
+vehicule_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:edit" }
+
+vehicule_update:
+    path:     /{id}/update
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:update" }
+    methods:  [POST, PUT]
+
+vehicule_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:delete" }
+    methods:  [POST, DELETE]

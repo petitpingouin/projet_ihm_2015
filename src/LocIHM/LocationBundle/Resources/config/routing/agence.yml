@@ -1,0 +1,30 @@
+agence:
+    path:     /
+    defaults: { _controller: "LocIHMLocationBundle:Agence:index" }
+
+agence_show:
+    path:     /{id}/show
+    defaults: { _controller: "LocIHMLocationBundle:Agence:show" }
+
+agence_new:
+    path:     /new
+    defaults: { _controller: "LocIHMLocationBundle:Agence:new" }
+
+agence_create:
+    path:     /create
+    defaults: { _controller: "LocIHMLocationBundle:Agence:create" }
+    methods:  POST
+
+agence_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LocIHMLocationBundle:Agence:edit" }
+
+agence_update:
+    path:     /{id}/update
+    defaults: { _controller: "LocIHMLocationBundle:Agence:update" }
+    methods:  [POST, PUT]
+
+agence_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LocIHMLocationBundle:Agence:delete" }
+    methods:  [POST, DELETE]

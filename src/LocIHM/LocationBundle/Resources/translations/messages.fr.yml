@@ -1,0 +1,29 @@
+word:
+    accueil: accueil
+
+titre:
+    reservezvehicule: Réservez maintenant votre véhicule
+    presentation: Partez sans vous soucier du reste
+
+footer:
+    create: Crée par LESPINASSE - TISSIER
+
+message:
+    index:
+        presentation: 
+            paragraphe: >
+                Basée à Nantes, LocIHM vous propose un ensemble de véhicules haut de gamme choyés par nos équipes pour vous emmener là où vous le voudrez !
+            paragraphe2: Profitez aussi d'une large gamme de véhicules utilitaires
+            items:
+                item1:
+                    keyword: Fiable
+                    text: >
+                        Nos véhicules sont entretenus par nos soins, pour vous.
+                item2:
+                    keyword: Impécables
+                    text: >
+                        Polis comme de vrais bijoux
+                item3:
+                    keyword: Efficace
+                    text: >
+                        Un problème ? Pas de problème, notre service assistance s'occupe de vous dépanner le plus vite possible.

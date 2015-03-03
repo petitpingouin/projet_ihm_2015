@@ -29,6 +29,32 @@ class VehiculeController extends Controller
             'entities' => $entities,
         ));
     }
+
+    /**
+     * Liste des vehicules de catégorie donnée
+     *
+     */
+    public function rechercheByTypeAction(Request $request)
+    {
+        $type = $request->request->get('typeVehicule_id');
+        
+        if($type != '')
+        {
+            $em = $this->getDoctrine()->getManager();
+            $entities = $em->getRepository('LocIHMLocationBundle:vehicule')->findBy(array(
+                'typeVehicule_id' => $type,
+                )
+            );
+            return $this->render('LocIHMLocationBundle:Vehicule:recherche.html.twig', array(
+                'entities' => $entities)
+            );
+        } else{
+            // Pas de type correspondant
+            // GERER L'ERREUR
+        }
+    }
+
+
     /**
      * Creates a new Vehicule entity.
      *

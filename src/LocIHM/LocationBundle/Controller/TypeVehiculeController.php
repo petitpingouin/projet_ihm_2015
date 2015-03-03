@@ -29,6 +29,7 @@ class TypeVehiculeController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new TypeVehicule entity.
      *

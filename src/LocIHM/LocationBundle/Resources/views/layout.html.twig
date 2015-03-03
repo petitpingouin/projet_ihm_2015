@@ -9,6 +9,7 @@
 		{% block css %}
 			<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/foundation.css')}}" />
 			<link rel="stylesheet" href="{{asset('bundles/LocationBundle/css/foundation-datepicker.css')}}" />
+			<link rel="stylesheet" href="{{asset('bundles/LocationBundle/icons/foundation-icons.css')}}" />
 			<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"><!-- Icones DatePicker -->
 
 			<!-- A nous -->
@@ -18,7 +19,7 @@
 <body>
 
 <!-- TOP BAR --> 
-<div class="sticky">
+<div class="fixed">
 	<nav class="top-bar "data-topbar role="navigation">
 	<ul class="title-area">
 		<li class="name">
@@ -29,6 +30,22 @@
 	<section class="top-bar-section">
 		<!-- Right -->
 		<ul class="right">
+		{% if is_granted("ROLE_ADMIN") %}
+			<li><a href="#">Dashboard</a></li>
+			<li class="divider"></li>
+			<li><a href="#">Réservation</a></li>
+			<li class="divider"></li>
+			<li class="has-dropdown">
+				<a href="#">Gestion</a>
+				<ul class="dropdown">
+					<li><a href="#">Agences</a></li>
+					<li><a href="#">Vehicules</a></li>
+					<li><a href="#">Forfaits</a></li>
+					<li><a href="#">Utilisateurs</a></li>
+				</ul>
+			</li>
+		{% endif %}
+
 			<li class="divider"></li>
 			{% include "LocIHMLocationBundle::connexion.html.twig" %}
 

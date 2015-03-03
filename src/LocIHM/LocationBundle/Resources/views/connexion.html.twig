@@ -1,5 +1,13 @@
-{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+{% if is_granted("ROLE_ADMIN") %}
 	{# Utilisateur connecté #}
+	<li>
+		<a href="{{ path('fos_user_profile_show') }}">{{ 'word.administration'|trans|title }}</a>
+	</li>
+	<li class="divider"></li>
+	<li class="has-form">
+		<a href="{{ path('fos_user_security_logout') }}" class="button">{{ 'layout.logout'|trans([], 'FOSUserBundle') }}</a>
+	</li>
+{% elseif  is_granted("ROLE_USER")%}
 	<li>
 		<a href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
 	</li>

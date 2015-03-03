@@ -28,3 +28,8 @@ vehicule_delete:
     path:     /{id}/delete
     defaults: { _controller: "LocIHMLocationBundle:Vehicule:delete" }
     methods:  [POST, DELETE]
+
+vehicule_recherche:
+    path:   /recherche
+    defaults: { _controller: "LocIHMLocationBundle:Vehicule:rechercheByType" }
+    methods: [POST]

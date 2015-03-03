@@ -18,6 +18,10 @@ loc_ihm_location_agence:
     resource: "@LocIHMLocationBundle/Resources/config/routing/agence.yml"
     prefix:   /agence
 
+loc_ihm_location_admin:
+    resource: "@LocIHMLocationBundle/Resources/config/routing/admin.yml"
+    prefix: /admin
+
 loc_ihm_location_homepage:
     path:     /
     defaults: { _controller: LocIHMLocationBundle:Default:index}

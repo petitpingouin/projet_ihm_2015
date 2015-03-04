@@ -38,7 +38,7 @@ class TypeVehicule
     /**
      * @var string
      *
-     * @ORM\Column(name="ss_categorie", type="string", length=255)
+     * @ORM\Column(name="ss_categorie", type="string", length=255, nullable=true)
      */
     private $ssCategorie;
 

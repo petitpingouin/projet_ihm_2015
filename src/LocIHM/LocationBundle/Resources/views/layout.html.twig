@@ -84,13 +84,14 @@
 	</div>
 {% endblock %}
 	
-
+{% block javascript %}
 	<script src="{{asset('bundles/LocationBundle/js/vendor/jquery.js')}}"></script>
 	<script src="{{asset('bundles/LocationBundle/js/vendor/modernizr.js')}}"></script>
 	<script src="{{asset('bundles/LocationBundle/js/foundation.min.js')}}"></script>
 	<script src="{{asset('bundles/LocationBundle/js/foundation/foundation.topbar.js')}}"></script>
 	<script src="{{asset('bundles/LocationBundle/js/vendor/datepicker.js')}}"></script>
 	<script src="{{asset('bundles/LocationBundle/js/default.js')}}"></script>
+{% endblock %}
 
 </body>
 </html>

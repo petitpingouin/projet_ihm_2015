@@ -1,36 +1,44 @@
 {# src/OC/PlatformBundle/Resources/views/Default/form_reserv.html.twig #}
 
-<form method="post" action="" id="form_reserv">
-			<div class="row">
-				<div class="small-12 columns">
-					<label>Choisissez votre type de véhicule</label>
-					<input type="radio" name="vehType" value="tourisme" id="vehTypeTourisme"/><label for="vehTypeTourisme">Tourisme</label>
-					<input type="radio" name="vehType" value="utilitaire" id="vehTypeUtilitaire"/><label for="vehTypeUtilitaire">Utilitaires</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-12 large-6 medium-6 columns">
-					<label for="vehCat">Catégorie</label>
-					<select id="vehCat" name="vehCat">
-						<option value="One">One</option>
-						<option value="Two">Two</option>
-					</select>
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-6 column">
-					<label>Date de départ: </label>
-					<input type="text" class="span2" value="" id="vehDate1"/>
-				</div>
-				<div class="small-6 column">
-					<label>Date de retour: </label>
-					<input type="text" class="span2" value="" id="vehDate2"/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-12">
-				</div>
-			</div>
+{{ form_start(form) }}
 
+	{{ form_errors(form) }}
+
+	<div class="row">
+		<div class="small-12 columns">
+			{{ form_label(form.categorie, 'form.categorie'|trans|title) }}
+			{{ form_widget(form.categorie) }}
+			{{ form_errors(form.categorie) }}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="small-12 large-6 medium-6 columns">
+			{{ form_label(form.type, 'form.type'|trans|title) }}
+			{{ form_widget(form.type) }}
+			{{ form_errors(form.type) }}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="small-6 columns">
+			{{ form_label(form.dateDepart, 'form.datedepart'|trans|title) }}
+			{{ form_widget(form.dateDepart) }}
+			{{ form_errors(form.dateDepart) }}
+		</div>
+		<div class="small-6 columns">
+			{{ form_label(form.dateArrivee, 'form.datearrivee'|trans|title) }}
+			{{ form_widget(form.dateArrivee) }}
+			{{ form_errors(form.dateArrivee) }}
+		</div>
+	</div>
+
+	{{ form_rest(form) }}
+	
+	<div class="row">
+		<div class="small-12 columns">
 			<input type="submit" id="vehSubmit" value="Trouver mon véhicule" class="button"/>
-		</form>
+		</div>
+	</div>
+
+{{ form_end(form) }}

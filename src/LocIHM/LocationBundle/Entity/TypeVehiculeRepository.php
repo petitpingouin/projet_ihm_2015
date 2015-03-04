@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class TypeVehiculeRepository extends EntityRepository
 {
+	public function getTypeByCategoriesQueryBuilder($categorie)
+	{
+		$er = $this->createQueryBuilder('type')
+			->where('type.categorie = :cat')
+			->setParameter('cat', $categorie);
+
+		return $er->getQuery()->getResult();
+	}
 }

@@ -6,6 +6,12 @@ titre:
     reservezvehicule: Réservez maintenant votre véhicule
     presentation: Partez sans vous soucier du reste
 
+form:
+    categorie: catégorie
+    type: type
+    datedepart: Date de départ
+    datearrivee: Date d'arrivée
+
 footer:
     create: Crée par LESPINASSE - TISSIER
 

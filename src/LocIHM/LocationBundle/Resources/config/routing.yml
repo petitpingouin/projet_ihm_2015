@@ -1,22 +1,22 @@
 loc_ihm_location_vehicule:
     resource: "@LocIHMLocationBundle/Resources/config/routing/vehicule.yml"
-    prefix:   /vehicule
+    prefix:   /admin/vehicule
 
 loc_ihm_location_typevehicule:
     resource: "@LocIHMLocationBundle/Resources/config/routing/typevehicule.yml"
-    prefix:   /typevehicule
+    prefix:   /admin/typevehicule
 
 loc_ihm_location_forfait:
     resource: "@LocIHMLocationBundle/Resources/config/routing/forfait.yml"
-    prefix:   /forfait
+    prefix:   /admin/forfait
 
 loc_ihm_location_contrat:
     resource: "@LocIHMLocationBundle/Resources/config/routing/contrat.yml"
-    prefix:   /contrat
+    prefix:   /admin/contrat
 
 loc_ihm_location_agence:
     resource: "@LocIHMLocationBundle/Resources/config/routing/agence.yml"
-    prefix:   /agence
+    prefix:   /admin/agence
 
 loc_ihm_location_admin:
     resource: "@LocIHMLocationBundle/Resources/config/routing/admin.yml"

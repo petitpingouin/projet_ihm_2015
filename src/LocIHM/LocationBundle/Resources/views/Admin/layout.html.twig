@@ -2,4 +2,6 @@
 
 {% extends "LocIHMLocationBundle::layout.html.twig" %}
 
-
+{% block title %}
+	{{ 'word.administration'|trans|title}} - {{ parent() }}
+{% endblock %}

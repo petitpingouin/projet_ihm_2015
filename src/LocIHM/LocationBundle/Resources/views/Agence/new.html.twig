@@ -1,15 +1,33 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>Agence creation</h1>
+{% block corps -%}
+    
+    <div class="row">
+        <div class="small-12 columns">
+          <h1> {{'titre.agence.new'|trans}} </h1>
+        </div>
+    </div>
 
-    {{ form(form) }}
+    <div class="row">
+        <div class="small-12 columns">
+        	<form action="{{ "{{ path('agence_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }} novalidate="novalidate">
+    			{{ form_row(form.nom) }}
+    			{{ form_row(form.adresse) }}
+    			{{ form_row(form.coordonnees) }}
+    		<p>
+        		<button type="submit" class="btn btn-primary">Enregistrer</button>
+    		</p>
+			</form>
 
-        <ul class="record_actions">
-    <li>
+   		</div>
+    </div>
+
+	<div class="row">
+        <div class="small-12 columns">
         <a href="{{ path('agence') }}">
             Back to the list
         </a>
-    </li>
-</ul>
+   		</div>
+    </div>
+
 {% endblock %}

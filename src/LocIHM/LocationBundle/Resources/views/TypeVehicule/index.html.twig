@@ -1,45 +1,50 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>TypeVehicule list</h1>
+{% block corps -%}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Categorie</th>
-                <th>Sscategorie</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('typevehicule_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nom }}</td>
-                <td>{{ entity.categorie }}</td>
-                <td>{{ entity.ssCategorie }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('typevehicule_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('typevehicule_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <!-- Header -->
+    <div class="row">
+        <div class="small-12 columns">
+          <h1> {{'titre.typevehicule'|trans}} </h1>
+        </div>
+    </div>
 
-        <ul>
-        <li>
-            <a href="{{ path('typevehicule_new') }}">
-                Create a new entry
+    <div class="row">
+        <div class="small-12 columns">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{'word.table.id'|trans}}</th>
+                        <th>{{'word.table.nom'|trans}}</th>
+                        <th>{{'word.table.typevehicule.categorie'|trans}}</th>
+                        <th>{{'word.table.typevehicule.sscategorie'|trans}}</th>
+                        <th>{{'word.table.action.title'|trans}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('typevehicule_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.nom }}</td>
+                        <td>{{ entity.categorie }}</td>
+                        <td>{{ entity.ssCategorie }}</td>
+                        <td>
+                            <a href="{{ path('typevehicule_show', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.show'|trans}}</a>
+                            <a href="{{ path('typevehicule_edit', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.edit'|trans}}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns">
+            <a href="{{ path('typevehicule_new') }}" class="button">
+                {{'form.add.new.typevehicule'|trans}}
             </a>
-        </li>
-    </ul>
+        </div>
+    </div>
+
     {% endblock %}

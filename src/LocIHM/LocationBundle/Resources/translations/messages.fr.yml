@@ -1,16 +1,56 @@
 word:
     accueil: accueil
     administration: administration
+    table:
+        id: Id
+        nom: Nom
+        agence:
+            adresse: Adresse
+            coordonnees: Coordonnées
+        action:
+            title: Actions
+            edit: Modifier
+            show: Afficher
+        contrat:
+            datedebut: Date du début
+            datefin: Date de fin
+        forfait:
+            kminclus: Kilomètre inclus
+            prix: Prix
+        typevehicule:
+            categorie: Catégorie
+            sscategorie: Sous-catégorie
+        vehicule:
+            marque: Marque
+            modele: Modèle
+            puissance: Puissance
+            couleur: Couleur
+            prixjournalier: Prix Journalier
 
 titre:
     reservezvehicule: Réservez maintenant votre véhicule
     presentation: Partez sans vous soucier du reste
+    agence: 
+        menu: Menu Agence
+        new: Ajout d'une agence
+    contrat: Menu Contrat
+    forfait: Menu Forfait
+    typevehicule: Menu des Types de Véhicules
+    vehicule: Menu des Véhicules
 
 form:
     categorie: catégorie
     type: type
     datedepart: Date de départ
     datearrivee: Date d'arrivée
+    add:
+        new:
+            agence: Ajouter une nouvelle agence
+            contrat: Ajouter un nouveau contrat
+            forfait: Ajouter un nouveau forfait
+            typevehicule: Ajouter un nouveau type de véhicule
+            vehicule: Ajouter un nouveau véhicule
+
 
 footer:
     create: Crée par LESPINASSE - TISSIER
@@ -34,3 +74,6 @@ message:
                     keyword: Efficace
                     text: >
                         Un problème ? Pas de problème, notre service assistance s'occupe de vous dépanner le plus vite possible.
+
+
+

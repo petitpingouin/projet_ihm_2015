@@ -18,8 +18,13 @@ class ContratType extends AbstractType
             ->add('dateDebut')
             ->add('dateFin')
             ->add('user')
-            ->add('vehicule')
-            ->add('forfait')
+            ->add('vehicule', 'entity', array(
+                'class' => 'LocIHMLocationBundle:Vehicule',
+            ))
+            ->add('forfait', 'entity', array(
+                'class' => 'LocIHMLocationBundle:Forfait',
+                'property' => 'Nom',
+            ))
         ;
     }
     

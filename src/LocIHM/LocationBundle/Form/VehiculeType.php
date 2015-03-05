@@ -20,8 +20,14 @@ class VehiculeType extends AbstractType
             ->add('puissance')
             ->add('couleur')
             ->add('prixJournalier')
-            ->add('typeVehicule')
-            ->add('agence')
+            ->add('typeVehicule', 'entity', array(
+                'class' => 'LocIHMLocationBundle:TypeVehicule',
+                'property' => 'Nom',
+            ))
+            ->add('agence', 'entity', array(
+                'class' => 'LocIHMLocationBundle:Agence',
+                'property' => 'Nom',
+            ))
         ;
     }
     

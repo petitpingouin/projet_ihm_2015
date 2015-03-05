@@ -68,7 +68,9 @@ class Vehicule
      */
     private $agence;
 
-
+    public function __toString(){
+        return $this->marque.' '.$this->modele;
+    }
 
     /**
      * Get id

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use LocIHM\LocationBundle\Form\rechercheVehDispoType;
 use LocIHM\LocationBundle\Form\Data\RechercheVehDispo;
 use LocIHM\LocationBundle\Entity\TypeVehicule;
+use LocIHM\LocationBundle\Form\RechercheVehHandler;
 
 
 
@@ -19,17 +20,32 @@ class DefaultController extends Controller
     {
 
     	// Création formulaire
-    	$rechercheVeh = new rechercheVehDispo();
-    	$rechercheForm = $this->createForm(new rechercheVehDispoType(), $rechercheVeh);
-    	$rechercheForm->handleRequest($request);
-    	if($rechercheForm->isValid()) {
+    	$vehTourisme = new RechercheVehDispo('Tourisme', 'Tourisme');
+        $vehUtilitaire = new RechercheVehDispo('Utilitaire', 'Utilitaire');
+
+    	$formTourisme = $this->createForm(new rechercheVehDispoType($vehTourisme->getName(), $vehTourisme->getCategorie()), $vehTourisme);
+    	$formUtilitaire = $this->createForm(new rechercheVehDispoType($vehUtilitaire->getName(), $vehUtilitaire->getCategorie()), $vehUtilitaire);
+
+        $formHandlerTourisme = new RechercheVehHandler($vehTourisme, $formTourisme, $request);
+    	if($formHandlerTourisme->process()) {
 
     	}
-    	$r = $this->getDoctrine()->getManager()->getRepository('LocIHMLocationBundle:TypeVehicule');
-    	$liste = $r->getTypeByCategoriesQueryBuilder('Tourisme');
- 		
+
+        $formHandlerUtilitaire = new RechercheVehHandler($vehUtilitaire, $formUtilitaire, $request);
+        if($formHandlerUtilitaire->process()) {
+
+        }
+	
         return $this->render('LocIHMLocationBundle:Default:index.html.twig', array(
-        	'form' => $rechercheForm->createView(),
+        	'formTourisme' => $formTourisme->createView(),
+            'formUtilitaire' => $formUtilitaire->createView(),
         ));
     }
+
+    // Résultats de recherche de véhicule
+    public function rechercheAction(Request $request)
+    {
+        
+    }
+    
 }

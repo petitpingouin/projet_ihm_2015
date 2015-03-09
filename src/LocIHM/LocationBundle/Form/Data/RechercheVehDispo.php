@@ -3,16 +3,39 @@
 
 namespace LocIHM\LocationBundle\Form\Data;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class RechercheVehDispo
 {
 
+    /**
+     *  @Assert\NotBlank(message="Veuillez indiquer une catégorie")
+     */
 	protected $categorie;
 
+    /**
+     * @Assert\NotBlank(message="Veuillez indiquer un type")
+     */
 	protected $type;
 
+    /**
+     * @Assert\Date(message="Date de départ invalide")
+     */
 	protected $dateDepart;
 
-	protected $dateArrivee;
+    /**
+     * @Assert\Date(message="Date d'arrivée invalide")
+     */
+	protected $dateArrivee; 
+
+    // Champ pour gérer les formulaires multiples sur une même page
+    protected $name;
+
+    public function __construct($name, $categorie)
+    {
+        $this->name = $name;
+        $this->categorie = $categorie;
+    }
 
     /**
      * Gets the value of categorie.
@@ -31,7 +54,7 @@ class RechercheVehDispo
      *
      * @return string
      */
-    protected function setCategorie($categorie)
+    public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
 
@@ -55,7 +78,7 @@ class RechercheVehDispo
      *
      * @return string
      */
-    protected function setType($type)
+    public function setType($type)
     {
         $this->type = $type;
 
@@ -79,7 +102,7 @@ class RechercheVehDispo
      *
      * @return string
      */
-    protected function setDateDepart($dateDepart)
+    public function setDateDepart($dateDepart)
     {
         $this->dateDepart = $dateDepart;
 
@@ -103,10 +126,21 @@ class RechercheVehDispo
      *
      * @return string
      */
-    protected function setDateArrivee($dateArrivee)
+    public function setDateArrivee($dateArrivee)
     {
         $this->dateArrivee = $dateArrivee;
 
         return $this;
+    }
+
+    public function getName()
+    {
+         return $this->name;
+    } 
+
+    public function setName($name)
+    {
+         $this->name = $name;
+         return $this;
     }
 }

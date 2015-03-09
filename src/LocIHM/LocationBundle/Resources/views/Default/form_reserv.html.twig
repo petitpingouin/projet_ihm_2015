@@ -1,44 +1,84 @@
 {# src/OC/PlatformBundle/Resources/views/Default/form_reserv.html.twig #}
 
-{{ form_start(form) }}
+<div class="row">
+	<div class="small-12 columns">
+		<ul class="tabs" data-tab>
+			<li class="tab-title active">
+				<a href="#panel1">Tourisme</a>
+			</li>
+			<li class="tab-title">
+				<a href="#panel2">Utilitaire</a>
+			</li>
+		</ul>
+		<div class="tabs-content">
+			<div class="content active" id="panel1">
 
-	{{ form_errors(form) }}
+				{{ form_start(formTourisme) }}
 
-	<div class="row">
-		<div class="small-12 columns">
-			{{ form_label(form.categorie, 'form.categorie'|trans|title) }}
-			{{ form_widget(form.categorie) }}
-			{{ form_errors(form.categorie) }}
+					{{ form_errors(formTourisme) }}
+
+					<div class="row">
+						<div class="small-12 large-6 medium-6 columns">
+							{{ form_label(formTourisme.type, 'form.type'|trans|title) }}
+							{{ form_widget(formTourisme.type) }}
+							{{ form_errors(formTourisme.type) }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="small-6 columns">
+							{{ form_label(formTourisme.dateDepart, 'form.datedepart'|trans|title) }}
+							{{ form_widget(formTourisme.dateDepart) }}
+							{{ form_errors(formTourisme.dateDepart) }}
+						</div>
+						<div class="small-6 columns">
+							{{ form_label(formTourisme.dateArrivee, 'form.datearrivee'|trans|title) }}
+							{{ form_widget(formTourisme.dateArrivee) }}
+							{{ form_errors(formTourisme.dateArrivee) }}
+						</div>
+					</div>
+
+					{{ form_rest(formTourisme) }}
+					
+					
+
+				{{ form_end(formTourisme) }}
+
+			</div>
+			<div class="content" id="panel2">
+
+				{{ form_start(formUtilitaire) }}
+
+					{{ form_errors(formUtilitaire) }}
+
+					<div class="row">
+						<div class="small-12 large-6 medium-6 columns">
+							{{ form_label(formUtilitaire.type, 'form.type'|trans|title) }}
+							{{ form_widget(formUtilitaire.type) }}
+							{{ form_errors(formUtilitaire.type) }}
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="small-6 columns">
+							{{ form_label(formUtilitaire.dateDepart, 'form.datedepart'|trans|title) }}
+							{{ form_widget(formUtilitaire.dateDepart) }}
+							{{ form_errors(formUtilitaire.dateDepart) }}
+						</div>
+						<div class="small-6 columns">
+							{{ form_label(formUtilitaire.dateArrivee, 'form.datearrivee'|trans|title) }}
+							{{ form_widget(formUtilitaire.dateArrivee) }}
+							{{ form_errors(formUtilitaire.dateArrivee) }}
+						</div>
+					</div>
+
+					{{ form_rest(formUtilitaire) }}
+					
+					
+
+				{{ form_end(formUtilitaire) }}
+
+			</div>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="small-12 large-6 medium-6 columns">
-			{{ form_label(form.type, 'form.type'|trans|title) }}
-			{{ form_widget(form.type) }}
-			{{ form_errors(form.type) }}
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="small-6 columns">
-			{{ form_label(form.dateDepart, 'form.datedepart'|trans|title) }}
-			{{ form_widget(form.dateDepart) }}
-			{{ form_errors(form.dateDepart) }}
-		</div>
-		<div class="small-6 columns">
-			{{ form_label(form.dateArrivee, 'form.datearrivee'|trans|title) }}
-			{{ form_widget(form.dateArrivee) }}
-			{{ form_errors(form.dateArrivee) }}
-		</div>
-	</div>
-
-	{{ form_rest(form) }}
-	
-	<div class="row">
-		<div class="small-12 columns">
-			<input type="submit" id="vehSubmit" value="Trouver mon véhicule" class="button"/>
-		</div>
-	</div>
-
-{{ form_end(form) }}
+</div>

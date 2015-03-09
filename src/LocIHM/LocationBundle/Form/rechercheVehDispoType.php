@@ -8,90 +8,82 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
 
-use LocIHM\LocationBundle\Entity\TypeVehicule;
-use LocIHM\LocationBundle\Form\Data\RechercheVehDispo as ObjetR;
+use LocIHM\LocationBundle\Entity\TypeVehiculeRepository;
+use LocIHM\LocationBundle\Form\Data\RechercheVehDispo;
 
 
 class rechercheVehDispoType extends AbstractType
 {
+
+	protected $categorie;
+	protected $name;
+
+	public function __construct($name = 'rechVeh', $categorie = 'Tourisme')
+	{
+		$this->name = 'LocIHM_LocationBundle_rechercheVehDispo_'.$name;
+		$this->categorie = $categorie;
+	}
+	
 	/**
 	 * @param FormBuilderInterface $builder
 	 * @param array $options
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+
 		$builder
-			->add('categorie', 'choice', array(
-    			'choices' => array('Tourisme' => 'Tourisme', 'Utilitaire' => 'Utilitaire'),
-    			'multiple' => false,
-    			'expanded' => true))
+			->add('type', 'entity', array(
+				'query_builder' => function(TypeVehiculeRepository $repo) {
+					return $repo->getTypeByCategoriesQueryBuilder($this->categorie);
+				},
+				'property' => 'nom',
+				'class' => 'LocIHM\LocationBundle\Entity\TypeVehicule'))
     		->add('dateDepart', 'date', array(
     			'input' => 'string',
     			'widget' => 'single_text',
-    			'format' => 'dd-MM-yyyy'))
+    			'format' => 'dd-MM-yyyy',
+    			'attr' => array(
+    				'class' => 'dateDepart',
+    				)
+    			))
     		->add('dateArrivee', 'date', array(
     			'input' => 'string',
     			'widget' => 'single_text',
-    			'format' => 'dd-MM-yyyy'))
+    			'format' => 'dd-MM-yyyy',
+    			'attr' => array(
+    				'class' => 'dateArrivee',
+    				)
+    			))
+    		->add('name', 'hidden')
+    		->add('recherche', 'submit', array(
+    			'attr' => array('class' => 'button')
+    			))
     	;
-
-		$formModifier = function(FormInterface $form, $categorie = null)
-		{
-			if($categorie === null) {
-				$types = array();
-				$form->add('type', 'entity', array(
-					'class' => 'LocIHMLocationBundle:TypeVehicule',
-					'placeholder' => '',
-					'choices' => $types,
-				));
-
-			} else {
-				echo 'wouhou';
-				$form->add('type', 'entity', array(
-					'class' => 'LocIHMLocationBundle:TypeVehicule',
-					'query_builder' => function(TypeVehiculeRepository $r, $categorie) {
-						return $r->createQueryBuilder('type')
-							->where('type.categorie = :cat')
-							->setParameter('cat', $categorie);
-					},
-					'placeholder' => '',
-					'property' => 'nom',
-				));
-			}
-		};
-
-		
-		$builder->addEventListener(
-			FormEvents::PRE_SET_DATA,
-			function (FormEvent $event) use ($formModifier) {
-				$data = $event->getData();
-				
-				$formModifier($event->getForm(), $data->getCategorie());
-			}
-		);
-		
-
-		$builder->get('categorie')->addEventListener(
-			FormEvents::POST_SUBMIT,
-			function (FormEvent $event) use ($formModifier) {
-				
-				$categorie = $event->getForm()->get('categorie');
-
-				$formModifier($event->getForm()->getParent(), $categorie);	
-			}
-		);
-
 	}
-
-	
 
 	/**
 	 * @return string
 	 */
 	public function getName()
 	{
-		return 'LocIHM_LocationBundle_rechercheVehDispo';
+		return $this->name;
+	}
+	/**
+	 * @return string
+	 */
+	public function getCategorie()
+	{
+		return $this->categorie;
 	} 
+
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+	{
+		
+		$resolver->setDefaults(array(
+			'data_class' => 'LocIHM\LocationBundle\Form\Data\RechercheVehDispo',
+			'categorie' => null,
+			'name' => null));
+	}
 }

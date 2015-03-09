@@ -49,32 +49,39 @@
 
 {% block javascript %}
 	{{ parent() }}
+	<script>
+		$(document).foundation('tab', 'reflow');
+		$(document).ready(function()
+		{
 
-	<script type="text/javascript">
-	$(document).ready(function() {
-		
-		var categorieInput = 'input[name="LocIHM_LocationBundle_rechercheVehDispo[categorie]"]:radio';
-		var categorieChecked = 'input[name="LocIHM_LocationBundle_rechercheVehDispo[categorie]"]:radio:checked';
-		var typeElt = '#LocIHM_LocationBundle_rechercheVehDispo_type';
-
-
-		$(categorieInput).on('change', function() {
-			var $form = $(this).closest('form');
-			var data = {};
-			data[$('input[name="LocIHM_LocationBundle_rechercheVehDispo[categorie]"]:radio:checked').attr('name')] = $('input[name="LocIHM_LocationBundle_rechercheVehDispo[categorie]"]:radio:checked').val();
-
-			$.ajax({
-				url: $form.attr('action'),
-				type: $form.attr('method'),
-				data: data,
-				success: function(html) {
-					typeElt.replaceWith(
-						$(html).find(typeElt)
-					);
+			// implementation of disabled form fields
+			var nowTemp = new Date();
+			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+			var checkin = $('.dateDepart').fdatepicker({
+				language: 'fr',
+				format: 'dd-mm-yyyy',
+				onRender: function (date) {
+					return date.valueOf() < now.valueOf() ? 'disabled' : '';
 				}
-			});
+			}).on('changeDate', function (ev) {
+				if (ev.date.valueOf() > checkout.date.valueOf()) {
+					var newDate = new Date(ev.date)
+					newDate.setDate(newDate.getDate() + 1);
+					checkout.update(newDate);
+				}
+				checkin.hide();
+				$('.dateArrivee')[0].focus();
+			}).data('datepicker');
+			var checkout = $('.dateArrivee').fdatepicker({
+				language: 'fr',
+				format: 'dd-mm-yyyy',
+				onRender: function (date) {
+					return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+				}
+			}).on('changeDate', function (ev) {
+				checkout.hide();
+			}).data('datepicker');
 		});
-
-	});
 	</script>
+	
 {% endblock %}

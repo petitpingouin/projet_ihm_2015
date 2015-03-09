@@ -18,6 +18,6 @@ class TypeVehiculeRepository extends EntityRepository
 			->where('type.categorie = :cat')
 			->setParameter('cat', $categorie);
 
-		return $er->getQuery()->getResult();
+		return $er;
 	}
 }

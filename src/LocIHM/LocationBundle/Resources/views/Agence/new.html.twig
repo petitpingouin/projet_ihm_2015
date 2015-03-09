@@ -1,7 +1,11 @@
 {% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
 {% block corps -%}
-    
+
+{{ form_start(form) }}
+
+	{{ form_errors(form) }}
+    <!-- Header -->
     <div class="row">
         <div class="small-12 columns">
           <h1> {{'titre.agence.new'|trans}} </h1>
@@ -10,24 +14,42 @@
 
     <div class="row">
         <div class="small-12 columns">
-        	<form action="{{ "{{ path('agence_create') }}" }}" method="post" {{ "{{ form_enctype(form) }}" }} novalidate="novalidate">
-    			{{ form_row(form.nom) }}
-    			{{ form_row(form.adresse) }}
-    			{{ form_row(form.coordonnees) }}
-    		<p>
-        		<button type="submit" class="btn btn-primary">Enregistrer</button>
-    		</p>
-			</form>
+    		{{ form_label(form.nom) }}
+			{{ form_widget(form.nom) }}
+			{{ form_errors(form.nom) }}
+		</div>
+	</div>
 
-   		</div>
+    <div class="row">
+        <div class="small-12 columns">
+			{{ form_label(form.adresse) }}
+			{{ form_widget(form.adresse) }}
+			{{ form_errors(form.adresse) }}
+		</div>
+	</div>
+
+   <div class="row">
+        <div class="small-12 columns">	
+			{{ form_label(form.coordonnees) }}
+			{{ form_widget(form.coordonnees) }}
+			{{ form_errors(form.coordonnees) }}			   		 
+        </div>
     </div>
 
-	<div class="row">
+   <div class="row">
         <div class="small-12 columns">
-        <a href="{{ path('agence') }}">
-            Back to the list
-        </a>
-   		</div>
+			{{ form_rest(form) }}
+        </div>
+    </div>
+
+{{ form_end(form) }}
+
+    <div class="row">
+        <div class="small-12 columns">
+        	<a href="{{ path('agence') }}"  class="button">
+               {{'form.add.retour'|trans}}
+            </a>
+        </div>
     </div>
 
 {% endblock %}

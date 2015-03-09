@@ -33,6 +33,9 @@ titre:
     agence: 
         menu: Menu Agence
         new: Ajout d'une agence
+        show: Affichage agence
+        edit: Modification de l'agence
+        delete: Supprimer l'agence
     contrat: Menu Contrat
     forfait: Menu Forfait
     typevehicule: Menu des Types de Véhicules
@@ -50,6 +53,7 @@ form:
             forfait: Ajouter un nouveau forfait
             typevehicule: Ajouter un nouveau type de véhicule
             vehicule: Ajouter un nouveau véhicule
+        retour: Retour a la liste
 
 
 footer:

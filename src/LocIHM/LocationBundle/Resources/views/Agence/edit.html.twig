@@ -1,16 +1,27 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>Agence edit</h1>
+{% block corps -%}
+    
+    <!-- Header -->
+    <div class="row">
+        <div class="small-12 columns">
+          <h1> {{'titre.agence.edit'|trans}} </h1>
+        </div>
+    </div>
 
-    {{ form(edit_form) }}
+    <div class="row">
+        <div class="small-12 columns">
+    		{{ form(edit_form) }}
+        </div>
+    </div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('agence') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="row">
+        <div class="small-12 columns">
+        	<a href="{{ path('agence') }}"  class="button">
+               {{'form.add.retour'|trans}}
+            </a>
+            {{ form(delete_form) }}
+        </div>
+    </div>
+    
 {% endblock %}

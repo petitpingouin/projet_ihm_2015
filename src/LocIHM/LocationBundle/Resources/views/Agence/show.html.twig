@@ -1,40 +1,50 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>Agence</h1>
+{% block corps -%}
+    
+    <!-- Header -->
+    <div class="row">
+        <div class="small-12 columns">
+          <h1> {{'titre.agence.show'|trans}} </h1>
+        </div>
+    </div>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ entity.nom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ entity.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Coordonnees</th>
-                <td>{{ entity.coordonnees }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="small-12 columns">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>{{'word.table.id'|trans}}</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'word.table.nom'|trans}}</th>
+                        <td>{{ entity.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'word.table.agence.adresse'|trans}}</th>
+                        <td>{{ entity.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'word.table.agence.coordonnees'|trans}}</th>
+                        <td>{{ entity.coordonnees }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('agence') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('agence_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="row">
+        <div class="small-12 columns">
+            <a href="{{ path('agence') }}"  class="button">
+               {{'form.add.retour'|trans}}
+            </a>
+            <a href="{{ path('agence_edit', { 'id': entity.id }) }}"  class="button">
+               {{'word.table.action.edit'|trans}}
+            </a>
+            {{ form(delete_form) }}
+        </div>
+    </div>
+
 {% endblock %}
+

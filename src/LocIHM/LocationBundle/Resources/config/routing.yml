@@ -25,3 +25,7 @@ loc_ihm_location_admin:
 loc_ihm_location_homepage:
     path:     /
     defaults: { _controller: LocIHMLocationBundle:Default:index}
+
+loc_ihm_location_recherche:
+    path:   /recherche
+    defaults: { _controller: LocIHMLocationBundle:Default:recherche}

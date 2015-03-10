@@ -18,6 +18,7 @@ class AgenceType extends AbstractType
             ->add('nom')
             ->add('adresse')
             ->add('coordonnees')
+            ->add('submit', 'submit');
         ;
     }
     

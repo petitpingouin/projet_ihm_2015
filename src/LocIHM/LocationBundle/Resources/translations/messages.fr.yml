@@ -12,7 +12,7 @@ word:
             edit: Modifier
             show: Afficher
         contrat:
-            datedebut: Date du début
+            datedebut: Date de début
             datefin: Date de fin
         forfait:
             kminclus: Kilomètre inclus
@@ -40,12 +40,14 @@ titre:
     forfait: Menu Forfait
     typevehicule: Menu des Types de Véhicules
     vehicule: Menu des Véhicules
+    votrereservation: votre réservation
 
 form:
     categorie: catégorie
     type: type
-    datedepart: Date de départ
-    datearrivee: Date d'arrivée
+    datedepart: date de départ
+    datearrivee: date d'arrivée
+    valider: valider
     add:
         new:
             agence: Ajouter une nouvelle agence

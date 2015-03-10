@@ -1,47 +1,26 @@
-{# src/OC/PlatformBundle/Resources/views/Default/index.html.twig #}
+{# src/OC/PlatformBundle/Resources/views/Default/recherche.html.twig #}
 
 {% extends "LocIHMLocationBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ 'word.accueil'|trans|title}} - {{ parent() }}
+	{{ 'titre.votrereservation'|trans|title}} - {{ parent() }}
 {% endblock %}
 
 
 {% block corps %}
-	
-	<!-- Header -->
-	<div class="row">
-		<div class="small-12 columns">
-			<h1>Loc IHM</h1>
-			<img src="{{asset('bundles/LocationBundle/img/accueil-top.png')}}" alt="Img Accueil"/>
-		</div>
-	</div>
-
-	<!-- Corps -->
-	<div class="row">
-		<div class="small-12 columns">
-			<div class="panel">
-				<h3>{{ 'titre.presentation'|trans }}</h3>
-				<p>{{ 'message.index.presentation.paragraphe'|trans }}</p>
-				<p>{{ 'message.index.presentation.paragraphe2'|trans }}</p>
-				<div class="row">
-				{% for i in 1..3 %}
-					<div class="large-4 medium-4 columns">
-						<p><strong>{{ ('message.index.presentation.items.item' ~ i ~ '.keyword')|trans }}</strong><br/>{{('message.index.presentation.items.item' ~ i ~ '.text')|trans }}</p>
-					</div>
-				{% endfor %}
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- Form recherche -->
 	<div class="row">
 		<div class="small-12 columns">
-
 			<h3>{{ 'titre.reservezvehicule'|trans }}</h3>
-			{{ include("LocIHMLocationBundle:Default:form_reserv.html.twig") }}
+			<div class="panel">
+				{{ include("LocIHMLocationBundle:Default:form_reserv.html.twig") }}
+			</div>
 			
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+
 		</div>
 	</div>
 

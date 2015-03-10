@@ -42,7 +42,7 @@ class Contrat
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="LocIHM\LocationBundle\Entity\Vehicule", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="LocIHM\LocationBundle\Entity\Vehicule", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $vehicule;

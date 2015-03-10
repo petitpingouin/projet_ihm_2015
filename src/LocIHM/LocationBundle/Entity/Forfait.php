@@ -43,7 +43,7 @@ class Forfait
     private $prix;
 
     /**
-    * @ORM\OneToMany(targetEntity="LocIHM\LocationBundle\Entity\Vehicule", mappedBy="forfait")
+    * @ORM\OneToMany(targetEntity="LocIHM\LocationBundle\Entity\Contrat", mappedBy="forfait")
     */
     private $contrats;
 

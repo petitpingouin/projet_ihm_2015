@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class VehiculeRepository extends EntityRepository
 {
+	public function getVehNotInContrat($type, $requete)
+	{
+		$qb = $this->createQueryBuilder('vehicule');
+		$qb
+			->where('vehicule.typeVehicule = :type')
+			->setParameter('type',$type)
+			->where($qb->expr()->notIn('vehicule.id', $requete))
+		;
+		return $qb->getQuery()->getResult();
+	}
 }

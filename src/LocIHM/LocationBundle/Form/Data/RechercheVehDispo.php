@@ -4,6 +4,7 @@
 namespace LocIHM\LocationBundle\Form\Data;
 
 use Symfony\Component\Validator\Constraints as Assert;
+USE Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class RechercheVehDispo
 {
@@ -142,5 +143,21 @@ class RechercheVehDispo
     {
          $this->name = $name;
          return $this;
+    }
+
+    // VALIDATIONS
+
+    /**
+     * @Assert\Callback
+     */
+    public function isContentValid(ExecutionContextInterface $context)
+    {
+        if($this->getDateArrivee() < $this->getDateDepart()) {
+            $context
+                ->buildViolation("Vous ne pouvez pas revenir avant même d'être parti !")
+                ->atPath('dateArrivee')
+                ->addViolation()
+            ;
+        }
     }
 }

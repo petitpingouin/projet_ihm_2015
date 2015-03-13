@@ -8,9 +8,52 @@
 
 
 {% block corps %}
+
+	{% if vehicules is defined %}
+		<div class="row" id="votreRecherche">
+			<div class="small-12 columns">
+			
+				{% if vehicules|length > 0 %}
+					<h3>{{ 'titre.vehiculesdispo'|trans|title }}</h3>
+
+					{% set cpt = 1 %}
+					{% for vehicule in vehicules %}
+						{% if cpt == 4 %}
+							{% set cpt = 1 %}
+						{% endif %}
+
+						{% if cpt == 1 %}
+							<div class="row">
+						{% endif %}
+								<div class="medium-4 columns">
+									<ul class="pricing-table">
+										<li class="title">{{ vehicule.marque }} {{ vehicule.modele }}</li>
+										<li class="description">{{ vehicule.typeVehicule.nom }}</li>
+										<li class="bullet-item">{{ vehicule.puissance }} CV</li>
+										<li class="bullet-item">{{ 'word.couleur'|trans|title }} {{ vehicule.couleur }}</li>
+										<li class="price">{{ vehicule.prixJournalier }} € /{{ 'word.jour'|trans }}</li>
+										<li class="cta-button"><a class="button small" href="#">Réserver</a></li>
+									</ul>
+								</div>
+						{% if cpt == 3 %}
+							</div>
+						{% endif %}
+						{% set cpt = cpt+1 %}
+					{% endfor %}
+				{% else %}
+					<div data-alert class="alert-box">
+						<strong>{{ 'message.recherche.pasdevehicule'|trans|title }}</strong>
+						<a href="#" class="close">&times;</a>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
+
 	<!-- Form recherche -->
 	<div class="row">
 		<div class="small-12 columns">
+			
 			<h3>{{ 'titre.reservezvehicule'|trans }}</h3>
 			<div class="panel">
 				{{ include("LocIHMLocationBundle:Default:form_reserv.html.twig") }}
@@ -18,76 +61,69 @@
 			
 		</div>
 	</div>
-	<div class="row">
-		<div class="small-12 columns">
-
-		</div>
-	</div>
+	
+		
 
 {% endblock %}
 
 {% block javascript %}
 	{{ parent() }}
+	<script src="{{asset('bundles/LocationBundle/js/foundation/foundation.alert.js')}}"></script>
 	<script>
 		$(document).foundation('tab', 'reflow');
+		$(document).foundation('alert', 'reflow');
 		$(document).ready(function()
 		{
 
 			// implementation of disabled form fields
+			// PREMIER FORMULAIRE
 			var nowTemp = new Date();
 			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-			// PREMIER FORMULAIRE
-			var checkin = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateDepart').fdatepicker({
-				language: 'fr',
+
+			var checkin1 = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateDepart').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
 					return date.valueOf() < now.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				if (ev.date.valueOf() > checkout.date.valueOf()) {
+				if (ev.date.valueOf() > checkout1.date.valueOf()) {
 					var newDate = new Date(ev.date)
 					newDate.setDate(newDate.getDate());
-					checkout.update(newDate);
+					checkout1.update(newDate);
 				}
-				checkin.hide();
+				checkin1.hide();
 				$('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee')[0].focus();
 			}).data('datepicker');
-
-			var checkout = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee').fdatepicker({
-				language: 'fr',
+			var checkout1 = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
-					return date.valueOf() < checkin.date.valueOf() ? 'disabled' : '';
+					return date.valueOf() < checkin1.date.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				checkout.hide();
+				checkout1.hide();
 			}).data('datepicker');
 
-			// DEUXIEME FORMULAIRE
-			var checkin = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateDepart').fdatepicker({
-				language: 'fr',
+			var checkin2 = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateDepart').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
 					return date.valueOf() < now.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				if (ev.date.valueOf() > checkout.date.valueOf()) {
+				if (ev.date.valueOf() > checkout2.date.valueOf()) {
 					var newDate = new Date(ev.date)
 					newDate.setDate(newDate.getDate());
-					checkout.update(newDate);
+					checkout2.update(newDate);
 				}
-				checkin.hide();
+				checkin2.hide();
 				$('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee')[0].focus();
 			}).data('datepicker');
-
-			var checkout = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee').fdatepicker({
-				language: 'fr',
+			var checkout2 = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
-					return date.valueOf() < checkin.date.valueOf() ? 'disabled' : '';
+					return date.valueOf() < checkin2.date.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				checkout.hide();
+				checkout2.hide();
 			}).data('datepicker');
 		});
 	</script>

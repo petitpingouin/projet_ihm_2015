@@ -1,6 +1,8 @@
 word:
     accueil: accueil
     administration: administration
+    couleur: couleur
+    jour: jour
     table:
         id: Id
         nom: Nom
@@ -41,6 +43,7 @@ titre:
     typevehicule: Menu des Types de Véhicules
     vehicule: Menu des Véhicules
     votrereservation: votre réservation
+    vehiculesdispo: Véhicules disponibles
 
 form:
     categorie: catégorie
@@ -80,6 +83,7 @@ message:
                     keyword: Efficace
                     text: >
                         Un problème ? Pas de problème, notre service assistance s'occupe de vous dépanner le plus vite possible.
-
+    recherche:
+        pasdevehicule: aucun véhicule disponible
 
 

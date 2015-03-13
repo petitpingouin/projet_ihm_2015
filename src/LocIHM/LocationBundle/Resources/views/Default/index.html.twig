@@ -55,60 +55,54 @@
 		{
 
 			// implementation of disabled form fields
+			// PREMIER FORMULAIRE
 			var nowTemp = new Date();
 			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-			// PREMIER FORMULAIRE
-			var checkin = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateDepart').fdatepicker({
-				language: 'fr',
+
+			var checkin1 = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateDepart').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
 					return date.valueOf() < now.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				if (ev.date.valueOf() > checkout.date.valueOf()) {
+				if (ev.date.valueOf() > checkout1.date.valueOf()) {
 					var newDate = new Date(ev.date)
 					newDate.setDate(newDate.getDate());
-					checkout.update(newDate);
+					checkout1.update(newDate);
 				}
-				checkin.hide();
+				checkin1.hide();
 				$('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee')[0].focus();
 			}).data('datepicker');
-
-			var checkout = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee').fdatepicker({
-				language: 'fr',
+			var checkout1 = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
-					return date.valueOf() < checkin.date.valueOf() ? 'disabled' : '';
+					return date.valueOf() < checkin1.date.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				checkout.hide();
+				checkout1.hide();
 			}).data('datepicker');
 
-			// DEUXIEME FORMULAIRE
-			var checkin = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateDepart').fdatepicker({
-				language: 'fr',
+			var checkin2 = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateDepart').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
 					return date.valueOf() < now.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				if (ev.date.valueOf() > checkout.date.valueOf()) {
+				if (ev.date.valueOf() > checkout2.date.valueOf()) {
 					var newDate = new Date(ev.date)
 					newDate.setDate(newDate.getDate());
-					checkout.update(newDate);
+					checkout2.update(newDate);
 				}
-				checkin.hide();
+				checkin2.hide();
 				$('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee')[0].focus();
 			}).data('datepicker');
-
-			var checkout = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee').fdatepicker({
-				language: 'fr',
+			var checkout2 = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee').fdatepicker({
 				format: 'dd-mm-yyyy',
 				onRender: function (date) {
-					return date.valueOf() < checkin.date.valueOf() ? 'disabled' : '';
+					return date.valueOf() < checkin2.date.valueOf() ? 'disabled' : '';
 				}
 			}).on('changeDate', function (ev) {
-				checkout.hide();
+				checkout2.hide();
 			}).data('datepicker');
 		});
 	</script>

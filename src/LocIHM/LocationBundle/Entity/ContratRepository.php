@@ -12,18 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class ContratRepository extends EntityRepository
 {
-	public function findByDateType($type, $dateDebut, $dateFin)
+	public function findIdVehUseInContrat($dateDebut, $dateFin)
 	{
+		
 		$qb = $this->createQueryBuilder('contrat');
 		$qb
-			->join('contrat.vehicule', 'vehicule', 'WITH', 'vehicule.typeVehicule = :type')
-			->addSelect('vehicule')
-			->setParameter('type', $type)
-			->where('contrat.dateDebut BETWEEN :dateDebut AND :dateFin')
-			->orWhere('contrat.dateFin BETWEEN :dateDebut AND :dateFin')
-			->setParameter('dateDebut', new \DateTime($dateDebut))
-			->setParameter('dateFin', new \DateTime($dateFin))
-		;
+			->where('contrat.dateDebut >= :dateDebut AND contrat.dateDebut <= :dateFin')
+			->orWhere('contrat.dateFin >= :dateDebut AND contrat.dateFin <= :dateFin')
+			->setParameter('dateDebut', $dateDebut)
+			->setParameter('dateFin', $dateFin);
+		
+		$qb = $qb->getQuery()->getResult();
 
 		return $qb;
 	}

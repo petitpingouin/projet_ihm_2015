@@ -30,18 +30,6 @@ class DefaultController extends Controller
             'action' => $this->generateUrl('loc_ihm_location_recherche'),
         ));
 
-        /*
-        $formHandlerTourisme = new RechercheVehHandler($vehTourisme, $formTourisme, $request);
-    	if($formHandlerTourisme->process()) {
-            // Formulaire valide
-            
-    	}
-
-        $formHandlerUtilitaire = new RechercheVehHandler($vehUtilitaire, $formUtilitaire, $request);
-        if($formHandlerUtilitaire->process()) {
-            // Formulaire valide
-        }
-	   */
         return $this->render('LocIHMLocationBundle:Default:index.html.twig', array(
         	'formTourisme' => $formTourisme->createView(),
             'formUtilitaire' => $formUtilitaire->createView(),
@@ -65,32 +53,32 @@ class DefaultController extends Controller
         $formHandlerTourisme = new RechercheVehHandler($vehTourisme, $formTourisme, $request);
         if($formHandlerTourisme->process()) {
             // Formulaire valide
-            
             $em = $this->getDoctrine()->getManager();
-            /*
-            $typesIndispos = $em
-                ->getRepository('LocIHMLocationBundle:Contrat')
-                ->findByDateType($vehTourisme->getType()->getId(), $vehTourisme->getDateDepart(), $vehTourisme->getDateArrivee())
-            ;*/
-            $requete = $em
-                ->getRepository('LocIHMLocationBundle:Contrat')
-                ->findByDateType($vehTourisme->getType()->getId(), $vehTourisme->getDateDepart(), $vehTourisme->getDateArrivee())
-            ;
 
-            $vehicules = $em
-                ->getRepository('LocIHMLocationBundle:Vehicule')
-                ->getVehNotInContrat($vehTourisme->getType()->getId(), $requete)
-            ;
-    
-            foreach($vehicules as $vehicules) {
-                print_r($vehicules->getVehicule()->getId());
-            }
+            $contrats = $em->getRepository('LocIHMLocationBundle:Contrat')->findIdVehUseInContrat($vehTourisme->getDateDepart(), $vehTourisme->getDateArrivee());
+            $veh = $em->getRepository('LocIHMLocationBundle:Vehicule')->getVehNotInContrat($vehTourisme->getType(), $contrats);
+           
+            return $this->render('LocIHMLocationBundle:Default:recherche.html.twig', array(
+            'formTourisme' => $formTourisme->createView(),
+            'formUtilitaire' => $formUtilitaire->createView(),
+            'vehicules' => $veh,
+        ));
 
         }
 
         $formHandlerUtilitaire = new RechercheVehHandler($vehUtilitaire, $formUtilitaire, $request);
         if($formHandlerUtilitaire->process()) {
             // Formulaire valide
+            $em = $this->getDoctrine()->getManager();
+
+            $contrats = $em->getRepository('LocIHMLocationBundle:Contrat')->findIdVehUseInContrat($vehUtilitaire->getDateDepart(), $vehUtilitaire->getDateArrivee());
+            $veh = $em->getRepository('LocIHMLocationBundle:Vehicule')->getVehNotInContrat($vehUtilitaire->getType(), $contrats);
+           
+            return $this->render('LocIHMLocationBundle:Default:recherche.html.twig', array(
+            'formTourisme' => $formTourisme->createView(),
+            'formUtilitaire' => $formUtilitaire->createView(),
+            'vehicules' => $veh,
+        ));
         }
     
         return $this->render('LocIHMLocationBundle:Default:recherche.html.twig', array(

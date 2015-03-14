@@ -15,11 +15,25 @@ class VehiculeRepository extends EntityRepository
 	public function getVehNotInContrat($type, $requete)
 	{
 		$qb = $this->createQueryBuilder('vehicule');
-		$qb
-			->where('vehicule.typeVehicule = :type')
-			->setParameter('type',$type)
-			->where($qb->expr()->notIn('vehicule.id', $requete))
-		;
-		return $qb->getQuery()->getResult();
+
+		if(count($requete) > 0) {
+			foreach($requete as $value) {
+				$tab[] = $value->getVehicule()->getId();
+			}
+			$qb
+				->where('vehicule.typeVehicule = :type')
+				->setParameter('type', $type)
+				->andWhere($qb->expr()->notIn('vehicule.id', $tab))
+			;
+
+		} else {
+			$qb
+				->where('vehicule.typeVehicule = :type')
+				->setParameter('type', $type)
+			;
+		}
+
+		$qb = $qb->getQuery()->getResult();
+		return $qb;
 	}
 }

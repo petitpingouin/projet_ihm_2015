@@ -1,15 +1,140 @@
-{% extends '::base.html.twig' %}
+{% extends "LocIHMLocationBundle::layout.html.twig" %}
 
-{% block body -%}
-    <h1>Contrat creation</h1>
+{% block corps -%}
 
-    {{ form(form) }}
+	{% block javascript %}
+	{{ parent() }}
+	<script>
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+$(document).ready(function()
+		{
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('contrat') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+			// implementation of disabled form fields
+			// PREMIER FORMULAIRE
+			var nowTemp = new Date();
+			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+			var checkin1 = $('#locihm_locationbundle_contrat[dateDebut]').fdatepicker({
+				format: 'dd-mm-yyyy',
+				onRender: function (date) {
+					return date.valueOf() < now.valueOf() ? 'disabled' : '';
+				}
+			}).on('changeDate', function (ev) {
+				if (ev.date.valueOf() > checkout1.date.valueOf()) {
+					var newDate = new Date(ev.date)
+					newDate.setDate(newDate.getDate());
+					checkout1.update(newDate);
+				}
+				checkin1.hide();
+				$('#locihm_locationbundle_contrat[dateFin]')[0].focus();
+			}).data('datepicker');
+			var checkout1 = $('#locihm_locationbundle_contrat[dateFin]').fdatepicker({
+				format: 'dd-mm-yyyy',
+				onRender: function (date) {
+					return date.valueOf() < checkin1.date.valueOf() ? 'disabled' : '';
+				}
+			}).on('changeDate', function (ev) {
+				checkout1.hide();
+			}).data('datepicker');
+
+			var checkin2 = $('#locihm_locationbundle_contrat[dateDebut]').fdatepicker({
+				format: 'dd-mm-yyyy',
+				onRender: function (date) {
+					return date.valueOf() < now.valueOf() ? 'disabled' : '';
+				}
+			}).on('changeDate', function (ev) {
+				if (ev.date.valueOf() > checkout2.date.valueOf()) {
+					var newDate = new Date(ev.date)
+					newDate.setDate(newDate.getDate());
+					checkout2.update(newDate);
+				}
+				checkin2.hide();
+				$('#locihm_locationbundle_contrat[dateFin]')[0].focus();
+			}).data('datepicker');
+			var checkout2 = $('#locihm_locationbundle_contrat[dateFin]').fdatepicker({
+				format: 'dd-mm-yyyy',
+				onRender: function (date) {
+					return date.valueOf() < checkin2.date.valueOf() ? 'disabled' : '';
+				}
+			}).on('changeDate', function (ev) {
+				checkout2.hide();
+			}).data('datepicker');
+		});
+	</script>
+
+{% endblock %}
+
+<!-- Header -->
+    <div class="row">
+        <div class="small-5 columns">
+          <h1> {{'titre.contrat.new'|trans}} </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-5 columns">
+            {{ form_start(form) }}
+
+                {{ form_errors(form) }}
+                <div class="panel">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(form.dateDebut, 'word.table.contrat.datedebut'|trans|title )  }}
+                            {{ form_widget(form.dateDebut) }}
+                            {{ form_errors(form.dateDebut) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(form.dateFin, 'word.table.contrat.datefin'|trans|title ) }}
+                            {{ form_widget(form.dateFin) }}
+                            {{ form_errors(form.dateFin) }}
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(form.user, 'word.table.contrat.user'|trans|title ) }}
+                            {{ form_widget(form.user) }}
+                            {{ form_errors(form.user) }}                  
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(form.vehicule, 'word.table.vehicule.modele'|trans|title ) }}
+                            {{ form_widget(form.vehicule) }}
+                            {{ form_errors(form.vehicule) }}                  
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(form.forfait, 'word.table.contrat.forfait'|trans|title ) }}
+                            {{ form_widget(form.forfait) }}
+                            {{ form_errors(form.forfait) }}                  
+                        </div>
+                    </div>                  
+
+                   <div class="row">
+                        <div class="small-12 columns">
+                			{{ form_widget(form.submit, { 'label': 'form.valider'|trans|title }) }}
+                        </div>
+                    </div>
+
+                {{ form_rest(form) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns">
+        	<a href="{{ path('contrat') }}"  class="button">
+               {{'form.add.retour'|trans|title}}
+            </a>
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,40 +1,54 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>Forfait</h1>
+{% block corps -%}
+    
+    <!-- Header -->
+    <div class="row">
+        <div class="small-12 columns">
+          <h1> {{'titre.forfait.show'|trans|title}} </h1>
+        </div>
+    </div>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ entity.nom }}</td>
-            </tr>
-            <tr>
-                <th>Kminclus</th>
-                <td>{{ entity.kminclus }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ entity.prix }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="small-12 columns">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>{{'word.table.id'|trans|title}}</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'word.table.nom'|trans|title}}</th>
+                        <td>{{ entity.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'word.table.forfait.kminclus'|trans|title}}</th>
+                        <td>{{ entity.kminclus }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{'word.table.forfait.prix'|trans|title}}</th>
+                        <td>{{ entity.prix }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('forfait') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('forfait_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="row">
+        <div class="small-12 columns">
+            {{ form_start(delete_form) }}
+            {{ form_errors(delete_form) }}
+            {{ form_widget(delete_form.submit, { 'label': 'form.delete'|trans|title} ) }}
+            {{ form_rest(delete_form) }}
+            {{ form_end(delete_form) }}
+            <a href="{{ path('forfait') }}"  class="button">
+               {{'form.add.retour'|trans|title}}
+            </a>
+            <a href="{{ path('forfait', { 'id': entity.id }) }}"  class="button">
+               {{'word.table.action.edit'|trans|title}}
+            </a>
+        </div>
+    </div>
+
 {% endblock %}
+

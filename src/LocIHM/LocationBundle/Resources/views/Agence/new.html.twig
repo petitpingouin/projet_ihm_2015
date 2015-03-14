@@ -10,14 +10,14 @@
     </div>
 
     <div class="row">
-        <div class="small-5 columns"
+        <div class="small-5 columns">
             {{ form_start(form) }}
 
                 {{ form_errors(form) }}
                 <div class="panel">
                     <div class="row">
                         <div class="small-12 columns">
-                    		{{ form_label(form.nom) }}
+                    		{{ form_label(form.nom, 'word.table.nom'|trans|title )  }}
                 			{{ form_widget(form.nom) }}
                 			{{ form_errors(form.nom) }}
                 		</div>
@@ -25,7 +25,7 @@
 
                     <div class="row">
                         <div class="small-12 columns">
-                			{{ form_label(form.adresse) }}
+                			{{ form_label(form.adresse, 'word.table.agence.adresse'|trans|title ) }}
                 			{{ form_widget(form.adresse) }}
                 			{{ form_errors(form.adresse) }}
                 		</div>
@@ -33,7 +33,7 @@
 
                    <div class="row">
                         <div class="small-12 columns">	
-                			{{ form_label(form.coordonnees) }}
+                			{{ form_label(form.coordonnees, 'word.table.agence.coordonnees'|trans|title ) }}
                 			{{ form_widget(form.coordonnees) }}
                 			{{ form_errors(form.coordonnees) }}			   		 
                         </div>
@@ -54,7 +54,7 @@
     <div class="row">
         <div class="small-12 columns">
         	<a href="{{ path('agence') }}"  class="button">
-               {{'form.add.retour'|trans}}
+               {{'form.add.retour'|trans|title}}
             </a>
         </div>
     </div>

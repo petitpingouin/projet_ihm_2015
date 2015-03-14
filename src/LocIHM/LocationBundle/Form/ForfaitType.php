@@ -18,6 +18,7 @@ class ForfaitType extends AbstractType
             ->add('nom')
             ->add('kminclus')
             ->add('prix')
+            ->add('submit', 'submit');
         ;
     }
     

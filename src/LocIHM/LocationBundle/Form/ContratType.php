@@ -15,8 +15,14 @@ class ContratType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('dateDebut', 'date', array(
+                'input'=>'string',
+                'widget'=>'single_text',
+                'format'=>'dd-MM-yyyy',))
+            ->add('dateFin', 'date', array(
+                'input'=>'string',
+                'widget'=>'single_text',
+                'format'=>'dd-MM-yyyy',))
             ->add('user')
             ->add('vehicule', 'entity', array(
                 'class' => 'LocIHMLocationBundle:Vehicule',
@@ -25,6 +31,7 @@ class ContratType extends AbstractType
                 'class' => 'LocIHMLocationBundle:Forfait',
                 'property' => 'Nom',
             ))
+            ->add('submit', 'submit');
         ;
     }
     

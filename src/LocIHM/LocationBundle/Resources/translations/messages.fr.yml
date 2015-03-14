@@ -4,44 +4,63 @@ word:
     couleur: couleur
     jour: jour
     table:
-        id: Id
-        nom: Nom
+        id: id
+        nom: nom
         agence:
-            adresse: Adresse
-            coordonnees: Coordonnées
+            adresse: adresse
+            coordonnees: coordonnées
         action:
-            title: Actions
-            edit: Modifier
-            show: Afficher
+            title: actions
+            edit: modifier
+            show: afficher
         contrat:
-            datedebut: Date de début
-            datefin: Date de fin
+            datedebut: date de début
+            datefin: date de fin
+            user: utilisateur
+            forfait: nom du forfait
         forfait:
-            kminclus: Kilomètre inclus
-            prix: Prix
+            kminclus: kilomètre inclus
+            prix: prix
         typevehicule:
-            categorie: Catégorie
+            categorie: catégorie
             sscategorie: Sous-catégorie
         vehicule:
-            marque: Marque
-            modele: Modèle
-            puissance: Puissance
-            couleur: Couleur
-            prixjournalier: Prix Journalier
+            marque: marque
+            modele: modèle
+            puissance: puissance
+            couleur: couleur
+            prixjournalier: prix journalier
+            typevehicule: type du véhicule
+            agence: agence du véhicule
 
 titre:
     reservezvehicule: Réservez maintenant votre véhicule
     presentation: Partez sans vous soucier du reste
     agence: 
-        menu: Menu Agence
-        new: Ajout d'une agence
-        show: Affichage agence
-        edit: Modification de l'agence
-        delete: Supprimer l'agence
-    contrat: Menu Contrat
-    forfait: Menu Forfait
-    typevehicule: Menu des Types de Véhicules
-    vehicule: Menu des Véhicules
+        menu: menu agence
+        new: ajout d'une agence
+        show: affichage de l'agence
+        edit: modification de l'agence
+    contrat:
+        menu: menu contrat
+        new: ajout d'un contrat
+        show: affichage du contrat
+        edit: modification du contrat
+    forfait: 
+        menu: menu forfait
+        new: ajout d'un forfait
+        show: affichage du forfait
+        edit: modification du forfait
+    typevehicule:
+        menu: menu type véhicule
+        new: ajout d'un type de véhicule
+        show: affichage du type de véhicule
+        edit: modification du type de véhicule
+    vehicule:
+        menu: menu véhicule
+        new: ajout d'un véhicule
+        show: affichage du véhicule
+        edit: modification du véhicule
     votrereservation: votre réservation
     votrerecherche: votre recherche
     vehiculesdispo: Véhicules disponibles
@@ -52,14 +71,15 @@ form:
     datedepart: date de départ
     datearrivee: date d'arrivée
     valider: valider
+    delete: supprimer
     add:
         new:
-            agence: Ajouter une nouvelle agence
-            contrat: Ajouter un nouveau contrat
-            forfait: Ajouter un nouveau forfait
-            typevehicule: Ajouter un nouveau type de véhicule
-            vehicule: Ajouter un nouveau véhicule
-        retour: Retour a la liste
+            agence: ajouter une nouvelle agence
+            contrat: ajouter un nouveau contrat
+            forfait: ajouter un nouveau forfait
+            typevehicule: ajouter un nouveau type de véhicule
+            vehicule: ajouter un nouveau véhicule
+        retour: retour a la liste
 
 
 footer:

@@ -1,15 +1,62 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>TypeVehicule creation</h1>
+{% block corps -%}
 
-    {{ form(form) }}
+    <!-- Header -->
+    <div class="row">
+        <div class="small-5 columns">
+          <h1> {{'titre.typevehicule.new'|trans|title}} </h1>
+        </div>
+    </div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('typevehicule') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <div class="row">
+        <div class="small-5 columns">
+            {{ form_start(form) }}
+
+                {{ form_errors(form) }}
+                <div class="panel">
+                    <div class="row">
+                        <div class="small-12 columns">
+                    		{{ form_label(form.nom, 'word.table.nom'|trans|title )  }}
+                			{{ form_widget(form.nom) }}
+                			{{ form_errors(form.nom) }}
+                		</div>
+                	</div>
+
+                    <div class="row">
+                        <div class="small-12 columns">
+                			{{ form_label(form.categorie, 'word.table.typevehicule.categorie'|trans|title ) }}
+                			{{ form_widget(form.categorie) }}
+                			{{ form_errors(form.categorie) }}
+                		</div>
+                	</div>
+
+                   <div class="row">
+                        <div class="small-12 columns">	
+                			{{ form_label(form.ssCategorie, 'word.table.typevehicule.sscategorie'|trans|title ) }}
+                			{{ form_widget(form.ssCategorie) }}
+                			{{ form_errors(form.ssCategorie) }}			   		 
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="small-12 columns">
+                			{{ form_widget(form.submit, { 'label': 'form.valider'|trans|title }) }}
+                        </div>
+                    </div>
+
+                {{ form_rest(form) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns">
+        	<a href="{{ path('typevehicule') }}"  class="button">
+               {{'form.add.retour'|trans|title}}
+            </a>
+        </div>
+    </div>
+
 {% endblock %}

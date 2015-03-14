@@ -1,16 +1,70 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>Forfait edit</h1>
+{% block corps -%}
+    
+    <!-- Header -->
+    <div class="row">
+        <div class="small-12 columns">
+          <h1> {{'titre.forfait.edit'|trans|title}} </h1>
+        </div>
+    </div>
 
-    {{ form(edit_form) }}
+    <div class="row">
+        <div class="small-5 columns">
+            {{ form_start(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('forfait') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                {{ form_errors(edit_form) }}
+                <div class="panel">
+                    <div class="row">
+                        <div class="small-12 columns">
+                    		{{ form_label(edit_form.nom, 'word.table.nom'|trans|title )  }}
+                			{{ form_widget(edit_form.nom) }}
+                			{{ form_errors(edit_form.nom) }}
+                		</div>
+                	</div>
+
+                    <div class="row">
+                        <div class="small-12 columns">
+                			{{ form_label(edit_form.kminclus, 'word.table.forfait.kminclus'|trans|title ) }}
+                			{{ form_widget(edit_form.kminclus) }}
+                			{{ form_errors(edit_form.kminclus) }}
+                		</div>
+                	</div>
+
+                   <div class="row">
+                        <div class="small-12 columns">	
+                			{{ form_label(edit_form.prix, 'word.table.forfait.prix'|trans|title ) }}
+                			{{ form_widget(edit_form.prix) }}
+                			{{ form_errors(edit_form.prix) }}	                  
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_widget(edit_form.submit, { 'label': 'form.valider'|trans|title }) }}
+                            {{ form_rest(edit_form) }}
+                            {{ form_end(edit_form) }}
+
+                            {{ form_start(delete_form) }}
+                            {{ form_errors(delete_form) }}
+                            {{ form_widget(delete_form.submit, { 'label': 'form.delete'|trans|title }) }}
+                            {{ form_rest(delete_form) }}
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+
+
+                </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+        	<a href="{{ path('forfait') }}"  class="button">
+               {{'form.add.retour'|trans|title}}
+            </a>
+        </div>
+    </div>
+
+    
 {% endblock %}

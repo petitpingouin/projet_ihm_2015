@@ -18,6 +18,7 @@ class TypeVehiculeType extends AbstractType
             ->add('nom')
             ->add('categorie')
             ->add('ssCategorie')
+            ->add('submit', 'submit')
         ;
     }
     

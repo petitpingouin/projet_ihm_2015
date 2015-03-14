@@ -1,16 +1,86 @@
-{% extends '::base.html.twig' %}
+{% extends 'LocIHMLocationBundle:Admin:layout.html.twig' %}
 
-{% block body -%}
-    <h1>Vehicule edit</h1>
+{% block corps -%}
+    
+    <!-- Header -->
+    <div class="row">
+        <div class="small-12 columns">
+          <h1> {{'titre.vehicule.edit'|trans|title}} </h1>
+        </div>
+    </div>
 
-    {{ form(edit_form) }}
+    <div class="row">
+        <div class="small-6 columns">
+            {{ form_start(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('vehicule') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                {{ form_errors(edit_form) }}
+                <div class="panel">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(edit_form.marque, 'word.table.vehicule.marque'|trans|title )  }}
+                            {{ form_widget(edit_form.marque) }}
+                            {{ form_errors(edit_form.marque) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(edit_form.modele, 'word.table.vehicule.modele'|trans|title ) }}
+                            {{ form_widget(edit_form.modele) }}
+                            {{ form_errors(edit_form.modele) }}
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(edit_form.puissance, 'word.table.vehicule.puissance'|trans|title ) }}
+                            {{ form_widget(edit_form.puissance) }}
+                            {{ form_errors(edit_form.puissance) }}                  
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(edit_form.couleur, 'word.table.vehicule.couleur'|trans|title ) }}
+                            {{ form_widget(edit_form.couleur) }}
+                            {{ form_errors(edit_form.couleur) }}                  
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(edit_form.prixJournalier, 'word.table.vehicule.prixjournalier'|trans|title ) }}
+                            {{ form_widget(edit_form.prixJournalier) }}
+                            {{ form_errors(edit_form.prixJournalier) }}                  
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_widget(edit_form.submit, { 'label': 'form.valider'|trans|title }) }}
+                            {{ form_rest(edit_form) }}
+                            {{ form_end(edit_form) }}
+
+                            {{ form_start(delete_form) }}
+                            {{ form_errors(delete_form) }}
+                            {{ form_widget(delete_form.submit, { 'label': 'form.delete'|trans|title }) }}
+                            {{ form_rest(delete_form) }}
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+
+
+                </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+        	<a href="{{ path('vehicule') }}"  class="button">
+               {{'form.add.retour'|trans|title}}
+            </a>
+        </div>
+    </div>
+
+    
 {% endblock %}

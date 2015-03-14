@@ -5,23 +5,66 @@
     <!-- Header -->
     <div class="row">
         <div class="small-12 columns">
-          <h1> {{'titre.agence.edit'|trans}} </h1>
+          <h1> {{'titre.agence.edit'|trans|title}} </h1>
         </div>
     </div>
 
     <div class="row">
-        <div class="small-12 columns">
-    		{{ form(edit_form) }}
+        <div class="small-5 columns">
+            {{ form_start(edit_form) }}
+
+                {{ form_errors(edit_form) }}
+                <div class="panel">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(edit_form.nom, 'word.table.nom'|trans|title )  }}
+                            {{ form_widget(edit_form.nom) }}
+                            {{ form_errors(edit_form.nom) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_label(edit_form.adresse, 'word.table.agence.adresse'|trans|title ) }}
+                            {{ form_widget(edit_form.adresse) }}
+                            {{ form_errors(edit_form.adresse) }}
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(edit_form.coordonnees, 'word.table.agence.coordonnees'|trans|title ) }}
+                            {{ form_widget(edit_form.coordonnees) }}
+                            {{ form_errors(edit_form.coordonnees) }}                  
+                        </div>
+                    </div>
+
+                   <div class="row">
+                        <div class="small-12 columns">
+                            {{ form_widget(edit_form.submit, { 'label': 'form.valider'|trans|title }) }}
+                            {{ form_rest(edit_form) }}
+                            {{ form_end(edit_form) }}
+
+                            {{ form_start(delete_form) }}
+                            {{ form_errors(delete_form) }}
+                            {{ form_widget(delete_form.submit, { 'label': 'form.delete'|trans|title }) }}
+                            {{ form_rest(delete_form) }}
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+
+
+                </div>
+
         </div>
     </div>
-
     <div class="row">
         <div class="small-12 columns">
         	<a href="{{ path('agence') }}"  class="button">
-               {{'form.add.retour'|trans}}
+               {{'form.add.retour'|trans|title}}
             </a>
-            {{ form(delete_form) }}
         </div>
     </div>
+
     
 {% endblock %}

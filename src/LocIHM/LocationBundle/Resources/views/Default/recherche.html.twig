@@ -15,6 +15,7 @@
 			
 				{% if vehicules|length > 0 %}
 					<h3>{{ 'titre.vehiculesdispo'|trans|title }}</h3>
+					<hr/>
 
 					{% set cpt = 1 %}
 					{% for vehicule in vehicules %}
@@ -46,6 +47,7 @@
 						<a href="#" class="close">&times;</a>
 					</div>
 				{% endif %}
+			<hr/>
 			</div>
 		</div>
 	{% endif %}
@@ -54,7 +56,11 @@
 	<div class="row">
 		<div class="small-12 columns">
 			
-			<h3>{{ 'titre.reservezvehicule'|trans }}</h3>
+			{% if vehicules is defined %}
+				<h3>{{ 'titre.votrerecherche'|trans|title }}</h3>
+			{% else %}
+				<h3>{{ 'titre.reservezvehicule'|trans }}</h3>
+			{% endif %}
 			<div class="panel">
 				{{ include("LocIHMLocationBundle:Default:form_reserv.html.twig") }}
 			</div>

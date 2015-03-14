@@ -40,6 +40,11 @@
 					    		<label for="remember_me" class="right">{{ 'security.login.remember_me'|trans }}</label>
 							</div>
 						</div>
+
+						{% if app.request.get('_route') != app.request.headers.get('referer') %}   
+						    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+						{% endif %}
+
 						<div class="row">
 							<div class="small-12 columns">
 					    		<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="button expand"/>

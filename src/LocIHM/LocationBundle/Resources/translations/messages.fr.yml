@@ -43,6 +43,7 @@ titre:
     typevehicule: Menu des Types de Véhicules
     vehicule: Menu des Véhicules
     votrereservation: votre réservation
+    votrerecherche: votre recherche
     vehiculesdispo: Véhicules disponibles
 
 form:

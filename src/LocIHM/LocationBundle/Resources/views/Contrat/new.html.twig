@@ -2,67 +2,6 @@
 
 {% block corps -%}
 
-	{% block javascript %}
-	{{ parent() }}
-	<script>
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-$(document).ready(function()
-		{
-
-			// implementation of disabled form fields
-			// PREMIER FORMULAIRE
-			var nowTemp = new Date();
-			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-
-			var checkin1 = $('#locihm_locationbundle_contrat[dateDebut]').fdatepicker({
-				format: 'dd-mm-yyyy',
-				onRender: function (date) {
-					return date.valueOf() < now.valueOf() ? 'disabled' : '';
-				}
-			}).on('changeDate', function (ev) {
-				if (ev.date.valueOf() > checkout1.date.valueOf()) {
-					var newDate = new Date(ev.date)
-					newDate.setDate(newDate.getDate());
-					checkout1.update(newDate);
-				}
-				checkin1.hide();
-				$('#locihm_locationbundle_contrat[dateFin]')[0].focus();
-			}).data('datepicker');
-			var checkout1 = $('#locihm_locationbundle_contrat[dateFin]').fdatepicker({
-				format: 'dd-mm-yyyy',
-				onRender: function (date) {
-					return date.valueOf() < checkin1.date.valueOf() ? 'disabled' : '';
-				}
-			}).on('changeDate', function (ev) {
-				checkout1.hide();
-			}).data('datepicker');
-
-			var checkin2 = $('#locihm_locationbundle_contrat[dateDebut]').fdatepicker({
-				format: 'dd-mm-yyyy',
-				onRender: function (date) {
-					return date.valueOf() < now.valueOf() ? 'disabled' : '';
-				}
-			}).on('changeDate', function (ev) {
-				if (ev.date.valueOf() > checkout2.date.valueOf()) {
-					var newDate = new Date(ev.date)
-					newDate.setDate(newDate.getDate());
-					checkout2.update(newDate);
-				}
-				checkin2.hide();
-				$('#locihm_locationbundle_contrat[dateFin]')[0].focus();
-			}).data('datepicker');
-			var checkout2 = $('#locihm_locationbundle_contrat[dateFin]').fdatepicker({
-				format: 'dd-mm-yyyy',
-				onRender: function (date) {
-					return date.valueOf() < checkin2.date.valueOf() ? 'disabled' : '';
-				}
-			}).on('changeDate', function (ev) {
-				checkout2.hide();
-			}).data('datepicker');
-		});
-	</script>
-
-{% endblock %}
 
 <!-- Header -->
     <div class="row">
@@ -136,5 +75,43 @@ $(document).ready(function()
             </a>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function()
+        {
+
+            // implementation of disabled form fields
+            // PREMIER FORMULAIRE
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            var checkin1 = $('#locihm_locationbundle_contrat_dateDebut').fdatepicker({
+                format: 'dd/mm/yyyy',
+                onRender: function (date) {
+                    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                }
+            }).on('changeDate', function (ev) {
+                if (ev.date.valueOf() > checkout1.date.valueOf()) {
+                    var newDate = new Date(ev.date)
+                    newDate.setDate(newDate.getDate());
+                    checkout1.update(newDate);
+                }
+                checkin1.hide();
+                $('#locihm_locationbundle_contrat_dateFin')[0].focus();
+            }).data('datepicker');
+            var checkout1 = $('#locihm_locationbundle_contrat_dateFin').fdatepicker({
+                format: 'dd/mm/yyyy',
+                onRender: function (date) {
+                    return date.valueOf() < checkin1.date.valueOf() ? 'disabled' : '';
+                }
+            }).on('changeDate', function (ev) {
+                checkout1.hide();
+            }).data('datepicker');
+        });
+    </script>
 
 {% endblock %}

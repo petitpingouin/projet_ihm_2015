@@ -87,7 +87,7 @@
 			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
 			var checkin1 = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateDepart').fdatepicker({
-				format: 'dd-mm-yyyy',
+				format: 'dd/mm/yyyy',
 				onRender: function (date) {
 					return date.valueOf() < now.valueOf() ? 'disabled' : '';
 				}
@@ -101,7 +101,7 @@
 				$('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee')[0].focus();
 			}).data('datepicker');
 			var checkout1 = $('#LocIHM_LocationBundle_rechercheVehDispo_Tourisme_dateArrivee').fdatepicker({
-				format: 'dd-mm-yyyy',
+				format: 'dd/mm/yyyy',
 				onRender: function (date) {
 					return date.valueOf() < checkin1.date.valueOf() ? 'disabled' : '';
 				}
@@ -110,7 +110,7 @@
 			}).data('datepicker');
 
 			var checkin2 = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateDepart').fdatepicker({
-				format: 'dd-mm-yyyy',
+				format: 'dd/mm/yyyy',
 				onRender: function (date) {
 					return date.valueOf() < now.valueOf() ? 'disabled' : '';
 				}
@@ -124,7 +124,7 @@
 				$('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee')[0].focus();
 			}).data('datepicker');
 			var checkout2 = $('#LocIHM_LocationBundle_rechercheVehDispo_Utilitaire_dateArrivee').fdatepicker({
-				format: 'dd-mm-yyyy',
+				format: 'dd/mm/yyyy',
 				onRender: function (date) {
 					return date.valueOf() < checkin2.date.valueOf() ? 'disabled' : '';
 				}

@@ -41,7 +41,7 @@ class rechercheVehDispoType extends AbstractType
 				'property' => 'nom',
 				'class' => 'LocIHM\LocationBundle\Entity\TypeVehicule'))
     		->add('dateDepart', 'date', array(
-    			'input' => 'string',
+    			'input' => 'datetime',
     			'widget' => 'single_text',
     			'format' => 'dd-MM-yyyy',
     			))

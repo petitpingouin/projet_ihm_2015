@@ -16,13 +16,15 @@ class ContratType extends AbstractType
     {
         $builder
             ->add('dateDebut', 'date', array(
-                'input'=>'string',
+                'input'=>'datetime',
                 'widget'=>'single_text',
-                'format'=>'dd-MM-yyyy',))
+                'format'=>'dd/MM/yyyy',
+            ))
             ->add('dateFin', 'date', array(
-                'input'=>'string',
+                'input'=>'datetime',
                 'widget'=>'single_text',
-                'format'=>'dd-MM-yyyy',))
+                'format'=>'dd/MM/yyyy',
+            ))
             ->add('user')
             ->add('vehicule', 'entity', array(
                 'class' => 'LocIHMLocationBundle:Vehicule',

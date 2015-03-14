@@ -22,16 +22,16 @@ class Contrat
     private $id;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date_debut", type="datetime")
+     * @ORM\Column(name="date_debut", type="date")
      */
     private $dateDebut;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date_fin", type="datetime")
+     * @ORM\Column(name="date_fin", type="date")
      */
     private $dateFin;
 
@@ -52,6 +52,7 @@ class Contrat
      * @ORM\JoinColumn(nullable=false)
      */
     private $forfait;
+
 
     /**
      * Get id

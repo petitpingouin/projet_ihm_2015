@@ -16,6 +16,8 @@ word:
         contrat:
             datedebut: date de début
             datefin: date de fin
+            user: utilisateur
+            forfait: nom du forfait
         forfait:
             kminclus: kilomètre inclus
             prix: prix
@@ -28,6 +30,8 @@ word:
             puissance: puissance
             couleur: couleur
             prixjournalier: prix journalier
+            typevehicule: type du véhicule
+            agence: agence du véhicule
 
 titre:
     reservezvehicule: Réservez maintenant votre véhicule

@@ -55,6 +55,22 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(form.typeVehicule, 'word.table.vehicule.typevehicule'|trans|title ) }}
+                            {{ form_widget(form.typeVehicule) }}
+                            {{ form_errors(form.typeVehicule) }}                  
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="small-12 columns">  
+                            {{ form_label(form.agence, 'word.table.vehicule.agence'|trans|title ) }}
+                            {{ form_widget(form.agence) }}
+                            {{ form_errors(form.agence) }}                  
+                        </div>
+                    </div>                   
+
                    <div class="row">
                         <div class="small-12 columns">
                 			{{ form_widget(form.submit, { 'label': 'form.valider'|trans|title }) }}

@@ -17,6 +17,9 @@
                         <th>{{'word.table.id'|trans|title}}</th>
                         <th>{{'word.table.contrat.datedebut'|trans|title}}</th>
                         <th>{{'word.table.contrat.datefin'|trans|title}}</th>
+                        <th>{{'word.table.contrat.user'|trans|title}}</th>
+                        <th>{{'word.table.vehicule.modele'|trans|title}}</th>
+                        <th>{{'word.table.contrat.forfait'|trans|title}}</th>
                         <th>{{'word.table.action.title'|trans|title}}</th>
                     </tr>
                 </thead>
@@ -26,6 +29,9 @@
                         <td><a href="{{ path('contrat_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                         <td>{% if entity.dateDebut %}{{ entity.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if entity.dateFin %}{{ entity.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.user }}</td>
+                        <td>{{ entity.vehicule.modele }}</td>
+                        <td>{{ entity.forfait.nom }}</td>
                         <td>
                             <a href="{{ path('contrat_show', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.show'|trans|title}}</a>
                             <a href="{{ path('contrat_edit', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.edit'|trans|title}}</a>

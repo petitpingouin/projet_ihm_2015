@@ -20,6 +20,8 @@
                         <th>{{'word.table.vehicule.puissance'|trans|title}}</th>
                         <th>{{'word.table.vehicule.couleur'|trans|title}}</th>
                         <th>{{'word.table.vehicule.prixjournalier'|trans|title}}</th>
+                        <th>{{'word.table.vehicule.typevehicule'|trans|title}}</th>
+                        <th>{{'word.table.vehicule.agence'|trans|title}}</th>
                         <th>{{'word.table.action.title'|trans|title}}</th>
                     </tr>
                 </thead>
@@ -32,6 +34,8 @@
                         <td>{{ entity.puissance }}</td>
                         <td>{{ entity.couleur }}</td>
                         <td>{{ entity.prixJournalier }}</td>
+                        <td>{{ entity.typeVehicule.categorie }} {{ entity.typeVehicule.ssCategorie }}</td>
+                        <td>{{ entity.agence.nom }}</td>
                         <td>
                             <a href="{{ path('vehicule_show', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.show'|trans|title}}</a>
                             <a href="{{ path('vehicule_edit', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.edit'|trans|title}}</a>

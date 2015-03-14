@@ -62,7 +62,7 @@ class DefaultController extends Controller
             'formTourisme' => $formTourisme->createView(),
             'formUtilitaire' => $formUtilitaire->createView(),
             'vehicules' => $veh,
-        ));
+            ));
 
         }
 

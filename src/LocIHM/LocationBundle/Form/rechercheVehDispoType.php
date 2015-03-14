@@ -43,12 +43,12 @@ class rechercheVehDispoType extends AbstractType
     		->add('dateDepart', 'date', array(
     			'input' => 'datetime',
     			'widget' => 'single_text',
-    			'format' => 'dd-MM-yyyy',
+    			'format' => 'dd/MM/yyyy',
     			))
     		->add('dateArrivee', 'date', array(
-    			'input' => 'string',
+    			'input' => 'datetime',
     			'widget' => 'single_text',
-    			'format' => 'dd-MM-yyyy',
+    			'format' => 'dd/MM/yyyy',
     			))
     		->add('name', 'hidden')
     		->add('recherche', 'submit', array(

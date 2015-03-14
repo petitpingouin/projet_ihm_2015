@@ -36,4 +36,40 @@ class VehiculeRepository extends EntityRepository
 		$qb = $qb->getQuery()->getResult();
 		return $qb;
 	}
+
+	/*
+	 * Retourne faux si le véhicule n'est pas dispo
+	 * Retourne le vehicule si dispo
+	 */
+	public function isVehNotInContrat($idveh, $requete)
+	{
+		$qb = $this->createQueryBuilder('vehicule');
+
+		if(count($requete) > 0) {
+			foreach($requete as $value) {
+				$tab[] = $value->getVehicule()->getId();
+			}
+			$qb
+				->where('vehicule.id = :id')
+				->setParameter('id', $idveh)
+				->andWhere($qb->expr()->notIn('vehicule.id', $tab))
+			;
+
+		} else {
+			$qb
+				->where('vehicule.id = :id')
+				->setParameter('id', $idveh)
+			;
+		}
+
+		$vehicules = $qb->getQuery()->getResult();
+
+		foreach($vehicules as $vehicule) {
+			if($vehicule->getId() == $idveh) {
+				return $vehicule;
+			}
+		}
+
+		return false;
+	}
 }

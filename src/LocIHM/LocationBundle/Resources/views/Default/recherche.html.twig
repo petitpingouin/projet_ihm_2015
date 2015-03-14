@@ -33,7 +33,7 @@
 										<li class="bullet-item">{{ vehicule.puissance }} CV</li>
 										<li class="bullet-item">{{ 'word.couleur'|trans|title }} {{ vehicule.couleur }}</li>
 										<li class="price">{{ vehicule.prixJournalier }} € /{{ 'word.jour'|trans }}</li>
-										<li class="cta-button"><a class="button small" href="#">Réserver</a></li>
+										<li class="cta-button"><a class="button small" href="{{ path('loc_ihh_location_reserver') }}?idveh={{ vehicule.id }} ">Réserver</a></li>
 									</ul>
 								</div>
 						{% if cpt == 3 %}
@@ -74,7 +74,6 @@
 
 {% block javascript %}
 	{{ parent() }}
-	<script src="{{asset('bundles/LocationBundle/js/foundation/foundation.alert.js')}}"></script>
 	<script>
 		$(document).foundation('tab', 'reflow');
 		$(document).foundation('alert', 'reflow');

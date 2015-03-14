@@ -3,6 +3,7 @@ word:
     administration: administration
     couleur: couleur
     jour: jour
+    reserver: réserver
     table:
         id: id
         nom: nom

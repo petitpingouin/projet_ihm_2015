@@ -29,3 +29,9 @@ loc_ihm_location_homepage:
 loc_ihm_location_recherche:
     path:   /recherche
     defaults: { _controller: LocIHMLocationBundle:Default:recherche}
+
+loc_ihh_location_reserver:
+    path: /user/reserver
+    defaults: { _controller: LocIHMLocationBundle:User:reserver}
+    requirements:
+        _method: GET

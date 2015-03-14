@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="row">
         <div class="small-12 columns">
-          <h1> {{'titre.forfait'|trans}} </h1>
+          <h1> {{'titre.forfait.menu'|trans|title}} </h1>
         </div>
     </div>
 
@@ -15,11 +15,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th>{{'word.table.id'|trans}}</th>
-                        <th>{{'word.table.nom'|trans}}</th>
-                        <th>{{'word.table.forfait.kminclus'|trans}}</th>
-                        <th>{{'word.table.forfait.prix'|trans}}</th>
-                        <th>{{'word.table.action.title'|trans}}</th>
+                        <th>{{'word.table.id'|trans|title}}</th>
+                        <th>{{'word.table.nom'|trans|title}}</th>
+                        <th>{{'word.table.forfait.kminclus'|trans|title}}</th>
+                        <th>{{'word.table.forfait.prix'|trans|title}}</th>
+                        <th>{{'word.table.action.title'|trans|title}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,8 +30,8 @@
                         <td>{{ entity.kminclus }}</td>
                         <td>{{ entity.prix }}</td>
                         <td>
-                            <a href="{{ path('forfait_show', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.show'|trans}}</a>
-                            <a href="{{ path('forfait_edit', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.edit'|trans}}</a>
+                            <a href="{{ path('forfait_show', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.show'|trans|title}}</a>
+                            <a href="{{ path('forfait_edit', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.edit'|trans|title}}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -43,7 +43,7 @@
     <div class="row">
         <div class="small-12 columns">
             <a href="{{ path('forfait_new') }}" class="button">
-                {{'form.add.new.forfait'|trans}}
+                {{'form.add.new.forfait'|trans|title}}
             </a>
         </div>
     </div>

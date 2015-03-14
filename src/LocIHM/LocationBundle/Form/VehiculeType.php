@@ -28,6 +28,7 @@ class VehiculeType extends AbstractType
                 'class' => 'LocIHMLocationBundle:Agence',
                 'property' => 'Nom',
             ))
+            ->add('submit', 'submit');
         ;
     }
     

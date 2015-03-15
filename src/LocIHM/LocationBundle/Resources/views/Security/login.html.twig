@@ -23,20 +23,20 @@
 					    <div class="row">
 					    	<div class="small-12 columns">
 							    <label for="username">{{ 'security.login.username'|trans }}
-							    	<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+							    	<input type="text" id="username" name="_username" value="{{ last_username }}" required="required" tabindex="1"/>
 							    </label>
 							</div>
 						</div>
 						<div class="row">
 					    	<div class="small-12 columns">
 							    <label for="password">{{ 'security.login.password'|trans }}
-							    	<input type="password" id="password" name="_password" required="required" />
+							    	<input type="password" id="password" name="_password" required="required" tabindex="2"/>
 							    </label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="small-12 columns">
-					    		<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+					    		<input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
 					    		<label for="remember_me" class="right">{{ 'security.login.remember_me'|trans }}</label>
 							</div>
 						</div>
@@ -51,6 +51,14 @@
 					    	</div>
 					    </div>
 					</form>
+
+					<hr/>
+					<div class="row">
+						<div class="small-12 columns">
+							<p class="text-center">{{ 'layout.pasdecompte'|trans }}</p>
+							<a href="{{ path('fos_user_registration_register') }}" class="button expand">{{ 'layout.register'|trans([], 'FOSUserBundle') }}</a>
+						</div>
+					</div>
 				{% endblock fos_user_content %}
 
 			</div>

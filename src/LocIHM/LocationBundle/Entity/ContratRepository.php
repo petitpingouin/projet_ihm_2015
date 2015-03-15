@@ -12,7 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class ContratRepository extends EntityRepository
 {
-	public function findIdVehUseInContrat($dateDebut, $dateFin)
+
+	/*
+	 * Retourne tous les contrats concernés par la période donnée
+	 */
+	public function getAllIdVehUseInContrat($dateDebut, $dateFin)
 	{
 		
 		$qb = $this->createQueryBuilder('contrat');
@@ -21,6 +25,26 @@ class ContratRepository extends EntityRepository
 			->orWhere('contrat.dateFin >= :dateDebut AND contrat.dateFin <= :dateFin')
 			->setParameter('dateDebut', $dateDebut)
 			->setParameter('dateFin', $dateFin);
+		
+		$qb = $qb->getQuery()->getResult();
+
+		return $qb;
+	}
+
+	/*
+	 * Retourne les contrats utilisant le vehicule dans la période donnée 
+	 */
+	public function getContratByDateAndIdVeh($idVeh, $dateDebut, $dateFin)
+	{
+		
+		$qb = $this->createQueryBuilder('contrat');
+		$qb
+			->where('contrat.dateDebut >= :dateDebut AND contrat.dateDebut <= :dateFin')
+			->orWhere('contrat.dateFin >= :dateDebut AND contrat.dateFin <= :dateFin')
+			->andWhere('contrat.vehicule = :idveh')
+			->setParameter('dateDebut', $dateDebut)
+			->setParameter('dateFin', $dateFin)
+			->setParameter('idveh', $idVeh);
 		
 		$qb = $qb->getQuery()->getResult();
 

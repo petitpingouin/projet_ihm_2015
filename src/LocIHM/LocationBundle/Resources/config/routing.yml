@@ -27,11 +27,17 @@ loc_ihm_location_homepage:
     defaults: { _controller: LocIHMLocationBundle:Default:index}
 
 loc_ihm_location_recherche:
-    path:   /recherche
-    defaults: { _controller: LocIHMLocationBundle:Default:recherche}
+    path:   /user/recherche
+    defaults: { _controller: LocIHMLocationBundle:User:recherche}
 
 loc_ihh_location_reserver:
     path: /user/reserver
     defaults: { _controller: LocIHMLocationBundle:User:reserver}
     requirements:
         _method: GET
+
+loc_ihm_location_recherche_forfait:
+    path: /user/getForfait
+    defaults: { _controller: LocIHMLocationBundle:User:rechercherForfait}
+    requirements:
+        _method: POST

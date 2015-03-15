@@ -33,7 +33,9 @@
 		{% if is_granted("ROLE_ADMIN") %}
 			<li><a href="#">Dashboard</a></li>
 			<li class="divider"></li>
-			<li><a href="#">Réservation</a></li>
+			<li><a href="{{ path('loc_ihm_location_recherche') }}">Réservation</a></li>
+			<li class="divider"></li>
+			<li><a href="{{ path('contrat') }}">Contrats</a></li>
 			<li class="divider"></li>
 			<li class="has-dropdown">
 				<a href="#">Gestion</a>
@@ -93,6 +95,10 @@
 	<script src="{{asset('bundles/LocationBundle/js/foundation/foundation.alert.js')}}"></script>
 	<script src="{{asset('bundles/LocationBundle/js/vendor/datepicker.js')}}"></script>
 	<script src="{{asset('bundles/LocationBundle/js/default.js')}}"></script>
+
+	<script>
+		$(document).foundation('alert', 'reflow');
+	</script>
 {% endblock %}
 
 </body>

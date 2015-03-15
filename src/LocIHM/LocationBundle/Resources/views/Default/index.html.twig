@@ -40,7 +40,21 @@
 		<div class="small-12 columns">
 
 			<h3>{{ 'titre.reservezvehicule'|trans }}</h3>
-			{{ include("LocIHMLocationBundle:Default:form_reserv.html.twig") }}
+
+
+			{% if is_granted("ROLE_USER") %}
+				{% include "LocIHMLocationBundle:Default:form_reserv.html.twig" %}
+
+			{% else %}
+				<div class="panel">
+					<h4 class="subheader text-center">{{ 'message.index.login.msg'|trans }}<h4>
+					<p class="text-center">
+						<a href="{{ path('fos_user_security_login') }}" class="button large">{{ 'message.index.login.connexion'|trans }}</a>
+						 ou 
+						<a href="{{ path('fos_user_registration_register') }}" class="button large">{{ 'message.index.login.inscription'|trans }}</a>
+					</p>
+				</div>
+			{% endif %}
 			
 		</div>
 	</div>

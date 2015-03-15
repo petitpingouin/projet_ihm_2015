@@ -41,35 +41,26 @@ class VehiculeRepository extends EntityRepository
 	 * Retourne faux si le véhicule n'est pas dispo
 	 * Retourne le vehicule si dispo
 	 */
-	public function isVehNotInContrat($idveh, $requete)
+	public function isVehDispo($idveh, $contrats)
 	{
-		$qb = $this->createQueryBuilder('vehicule');
-
-		if(count($requete) > 0) {
-			foreach($requete as $value) {
-				$tab[] = $value->getVehicule()->getId();
-			}
-			$qb
-				->where('vehicule.id = :id')
-				->setParameter('id', $idveh)
-				->andWhere($qb->expr()->notIn('vehicule.id', $tab))
-			;
-
+		if(count($contrats) > 0) {
+			return false;
 		} else {
+			$qb = $this->createQueryBuilder('vehicule');
 			$qb
 				->where('vehicule.id = :id')
 				->setParameter('id', $idveh)
 			;
-		}
 
-		$vehicules = $qb->getQuery()->getResult();
+			$vehicules = $qb->getQuery()->getResult();
 
-		foreach($vehicules as $vehicule) {
-			if($vehicule->getId() == $idveh) {
-				return $vehicule;
+			// Surement inutile, mais je préfère m'assurer que l'on ne retourne qu'un seul véhicule, et le bon
+			foreach($vehicules as $vehicule) {
+				if($vehicule->getId() == $idveh) {
+					return $vehicule;
+				}
 			}
 		}
-
-		return false;
 	}
+
 }

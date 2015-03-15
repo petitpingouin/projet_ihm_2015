@@ -1,0 +1,168 @@
+{# src/OC/PlatformBundle/Resources/views/User/reserver.html.twig #}
+
+{% extends "LocIHMLocationBundle::layout.html.twig" %}
+
+{% block title %}
+	{{ 'word.reserver'|trans|title}} - {{ parent() }}
+{% endblock %}
+
+
+{% block corps %}
+
+	<div class="row">
+		<div class="small-12 columns">
+			<h1>{{ 'titre.votrereservation'|trans|title }}</h1>
+			<div class="panel">
+
+				{{ form_start(form) }}
+
+				<h3 class="subheader">{{ 'word.resume'|trans|title }}</h3>
+
+				<div class="row">
+					<div class="small-6 small-centered columns">
+						<table id="table_reserv">
+							<thead>
+								<tr>
+									<th class="text-center">{{ 'word.table.contrat.datedebut'|trans|title }}</th>
+									<th class="text-center">{{ 'word.table.contrat.datefin'|trans|title }}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="text-center">{{ app.session.get('reserv_dateDepart').format('d/m/Y') }}</td>
+									<td class="text-center">{{ app.session.get('reserv_dateArrivee').format('d/m/Y') }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-6  small-centered columns">
+						<ul class="pricing-table">
+							<li class="title">{{ vehicule.marque }} {{ vehicule.modele }}</li>
+							<li class="description">{{ vehicule.typeVehicule.nom }}</li>
+							<li class="bullet-item">{{ vehicule.puissance }} CV</li>
+							<li class="bullet-item">{{ 'word.couleur'|trans|title }} {{ vehicule.couleur }}</li>
+							<li class="price">{{ vehicule.prixJournalier }} € /{{ 'word.jour'|trans }}</li>
+						</ul>
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class="row">
+					<div class="small-12 columns">
+						<div class="row">
+							<div class="small-12 columns">
+								<h3 class="subheader">{{ 'word.table.forfait.forfait'|trans|title }}</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="small-6 small-centered columns">
+								{{ form_widget(form.forfait) }}
+								{{ form_errors(form.forfait) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="small-6 small-centered columns">
+								<ul class="pricing-table" id="pricing_forfait">
+									<li class="title"></li>
+									<li class="bullet-item"></li>
+									<li class="price"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<hr/>
+
+				<div class="row">
+					<div class="small-12 columns">
+						<h3 class="subheader">{{ 'word.total'|trans|title }}</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-10 columns"></div>
+					<div class="small-2 columns text-center">
+						<p>
+							{{ vehicule.prixJournalier * nbJours }}<br/>
+							<span id="prixForfait"></span>
+
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-10 columns"></div>
+					<div class="small-2 columns">
+						<h3 class="subheader text-center" id="displayprix"></h3>
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class="row">
+					<div class="small-4 columns text-left">
+						<a href="#" class="button">{{ 'word.retour'|trans|title }}</a>
+					</div>
+					<div class="small-4 columns">
+					</div>
+					<div class="small-4 columns text-right">
+						<input type="submit" id="_submit" name="_submit" value="{{ 'form.valider'|trans|title }}" class="button"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		
+
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	
+	<script>
+		$(document).ready(function()
+		{
+			$("#pricing_forfait").hide(); // masque la table de prix
+
+			// Calcul du prix
+			var prixJour = {{ vehicule.prixJournalier }} * {{ nbJours }};
+
+			var display = $("#displayprix");
+
+			display.text(prixJour + "€");
+
+			// Affichage (AJAX) du forfait
+			$("#form_forfait").change(function() {
+				var forfait = $("#form_forfait").val();
+				var donnees = 'idFor=' + forfait;
+				$.ajax({
+					type: "POST",
+					url: "{{ path('loc_ihm_location_recherche_forfait') }}",
+					data: donnees,
+					dataType: "json",
+					cache: false,
+					success: function(data) {
+						data = JSON.parse(data);
+						$('#pricing_forfait .title').text(data.nom);
+						$("#pricing_forfait .bullet-item").text(data.kminclus + ' km inclus');
+						$("#pricing_forfait .price").text(data.prix + '€');
+						$("#pricing_forfait").show();
+						$("#prixForfait").text(data.prix);
+						
+						prixJour = {{ vehicule.prixJournalier }} * {{ nbJours }} + data.prix;
+						display.text(prixJour + '€');
+
+						
+					}
+				});
+			})
+
+			
+		});
+
+	</script>
+	
+{% endblock %}

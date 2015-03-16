@@ -33,11 +33,13 @@ loc_ihm_location_recherche:
 loc_ihh_location_reserver:
     path: /user/reserver
     defaults: { _controller: LocIHMLocationBundle:User:reserver}
-    requirements:
-        _method: GET
 
 loc_ihm_location_recherche_forfait:
     path: /user/getForfait
     defaults: { _controller: LocIHMLocationBundle:User:rechercherForfait}
     requirements:
         _method: POST
+
+loc_ihm_location_user_index:
+    path: /user/index
+    defaults: { _controller: LocIHMLocationBundle:User:index}

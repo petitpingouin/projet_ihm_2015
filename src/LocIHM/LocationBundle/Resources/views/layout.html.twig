@@ -60,12 +60,11 @@
 
 	<div class="row">
 		<div class="small-12 columns">
-			{% for type, messages in app.session.flashbag.all() %}
-			    {% for message in messages %}
-			        <div data-alert class="flash-{{ type }} alert-box success">
-			            {{ message }}
-			        </div>
-			    {% endfor %}
+			{% for flashMessage in app.session.flashbag.get('notice') %}
+			    <div data-alert class="flash-notice alert-box">
+			        {{ flashMessage }}
+			        <a href="#" class="close">&times;</a>
+			    </div>
 			{% endfor %}
 		</div>
 	</div>

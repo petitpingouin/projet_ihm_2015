@@ -24,11 +24,3 @@
 		<a href="{{ path('fos_user_registration_register') }}" class="button">{{ 'layout.register'|trans([], 'FOSUserBundle') }}</a>
 	</li>
 {% endif %}
-
-{% for type, messages in app.session.flashbag.all() %}
-    {% for message in messages %}
-        <div class="flash-{{ type }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}

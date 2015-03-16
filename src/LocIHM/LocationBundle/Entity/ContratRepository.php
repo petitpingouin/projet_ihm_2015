@@ -50,4 +50,43 @@ class ContratRepository extends EntityRepository
 
 		return $qb;
 	}
+
+	/*
+	 * Retourne les contrats en cours ou futur d'un utilisateur
+	 */
+	public function getContratByDateAndUser($user) {
+		$qb = $this->createQueryBuilder('contrat');
+
+		$now = new \DateTime('2010-03-11');
+		$qb
+			->where('contrat.user = :idUser')
+			->andWhere('contrat.dateDebut > :now')
+			->orWhere('contrat.dateDebut < :now AND contrat.dateFin > :now')
+			->setParameter('now', new \DateTime("now"), \Doctrine\DBAL\Types\Type::DATETIME)
+			->setParameter('idUser', $user)
+		;
+
+		$qb = $qb->getQuery()->getResult();
+
+		return $qb;
+	}
+
+	/*
+	 * Retourne les contrats en cours ou futur d'un utilisateur
+	 */
+	public function getContratPassedByDateAndUser($user) {
+		$qb = $this->createQueryBuilder('contrat');
+
+		$now = new \DateTime('2010-03-11');
+		$qb
+			->where('contrat.user = :idUser')
+			->andWhere('contrat.dateFin < :now')
+			->setParameter('now', new \DateTime("now"), \Doctrine\DBAL\Types\Type::DATETIME)
+			->setParameter('idUser', $user)
+		;
+
+		$qb = $qb->getQuery()->getResult();
+
+		return $qb;
+	}
 }

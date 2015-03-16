@@ -17,6 +17,21 @@ use LocIHM\LocationBundle\Entity\Contrat;
 
 class UserController extends Controller
 {
+    // Accueil de l'utilisateur
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $contrats = $em->getRepository('LocIHMLocationBundle:Contrat')->getContratByDateAndUser($user);
+        $contratsP = $em->getRepository('LocIHMLocationBundle:Contrat')->getContratPassedByDateAndUser($user);
+
+        return $this->render('LocIHMLocationBundle:User:user.html.twig', array(
+            'contrats' => $contrats,
+            'contratsP' => $contratsP,
+        ));
+    }
+
 	// Résultats de recherche de véhicule
     public function rechercheAction(Request $request)
     {
@@ -119,7 +134,17 @@ class UserController extends Controller
 
         $form = $formBuilder->getForm();
 
-        // MANQUE LA VALIDATION
+        // Validation
+        $form->handleRequest($request);
+
+        if($form->isValid()) {
+            $em->persist($contrat);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Réservation enregistrée');
+
+            return $this->redirect($this->generateUrl('loc_ihm_location_user_index'));
+        }
 
         return $this->render('LocIHMLocationBundle:User:reserver.html.twig', array(
         	'nbJours' => $nbJours,

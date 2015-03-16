@@ -8,7 +8,66 @@
 
 
 {% block corps %}
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="panel">
+				<h3>{{ 'titre.voscontrats'|trans|title }}</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>N°</th>
+							<th>Depart</th>
+							<th>Retour</th>
+							<th>Vehicule</th>
+							<th>Forfait</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for contrat in contrats %}
+							<tr>
+								<td>{{ contrat.id }}</td>
+								<td>{{ contrat.dateDebut|date('d/m/Y') }}</td>
+								<td>{{ contrat.dateFin|date('d/m/Y') }}</td>
+								<td>{{ contrat.getVehicule() }}</td>
+								<td>{{ contrat.getForfait().getNom() }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
 
+				<hr/>
+
+				<h3>{{ 'titre.contratspasses'|trans|title }}</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>N°</th>
+							<th>Depart</th>
+							<th>Retour</th>
+							<th>Vehicule</th>
+							<th>Forfait</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for contratP in contratsP %}
+							<tr>
+								<td>{{ contratP.id }}</td>
+								<td>{{ contratP.dateDebut|date('d/m/Y') }}</td>
+								<td>{{ contratP.dateFin|date('d/m/Y') }}</td>
+								<td>{{ contratP.getVehicule() }}</td>
+								<td>{{ contratP.getForfait().getNom() }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<hr/>
+
+				<h3>{{ 'titre.parlonsdevous'|trans|title }}</h3>
+
+			</div>
+		</div>
+	</div>
 	
 	
 		

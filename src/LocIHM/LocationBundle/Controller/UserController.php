@@ -7,12 +7,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
+use FOS\UserBundle\Model\UserInterface;
 
 use LocIHM\LocationBundle\Form\rechercheVehDispoType;
 use LocIHM\LocationBundle\Form\Data\RechercheVehDispo;
 use LocIHM\LocationBundle\Entity\TypeVehicule;
 use LocIHM\LocationBundle\Form\RechercheVehHandler;
 use LocIHM\LocationBundle\Entity\Contrat;
+use LocIHM\LocationBundle\Form\ContratType;
 
 
 class UserController extends Controller
@@ -20,13 +24,19 @@ class UserController extends Controller
     // Accueil de l'utilisateur
     public function indexAction()
     {
+    	$user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
         $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
+
 
         $contrats = $em->getRepository('LocIHMLocationBundle:Contrat')->getContratByDateAndUser($user);
         $contratsP = $em->getRepository('LocIHMLocationBundle:Contrat')->getContratPassedByDateAndUser($user);
 
+
         return $this->render('LocIHMLocationBundle:User:user.html.twig', array(
+        	'user' => $user,
             'contrats' => $contrats,
             'contratsP' => $contratsP,
         ));
@@ -127,10 +137,8 @@ class UserController extends Controller
         	->add('forfait', 'entity', array(
         		'class' => 'LocIHMLocationBundle:Forfait',
         		'property' => 'nom',
-        		'placeholder' => 'Choisissez un forfait'))
-        	->add('submit', 'submit', array(
-    			'attr' => array('class' => 'button')
-    	));
+        		'placeholder' => 'Choisissez un forfait'
+        ));
 
         $form = $formBuilder->getForm();
 
@@ -167,6 +175,34 @@ class UserController extends Controller
 
     		return new JsonResponse($serializer->serialize($forfait, 'json'));
     	}
+    }
+
+	/**
+	* Deletes a Contrat entity.
+	*
+	*/
+    public function deleteAction(Request $request, $id)
+    {
+    	$user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $contrat = $em->getRepository('LocIHMLocationBundle:Contrat')->find($id);
+
+        if (!$contrat) {
+            throw $this->createNotFoundException('Unable to find Contrat entity.');
+        } else {
+	        if($contrat->getUser() != $user) {
+	        	$request->getSession()->getFlashBag()->add('alert', 'Petit malin !');
+	        } else {
+	            $em->remove($contrat);
+	            $em->flush();
+	        }
+	    }
+
+        return $this->redirect($this->generateUrl('loc_ihm_location_user_index'));
     }
    
 }

@@ -9,7 +9,7 @@
 	</li>
 {% elseif  is_granted("ROLE_USER")%}
 	<li>
-		<a href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+		<a href="{{ path('loc_ihm_location_user_index') }}">{{ 'message.user.moncompte'|trans|title }}</a>
 	</li>
 	<li class="divider"></li>
 	<li class="has-form">

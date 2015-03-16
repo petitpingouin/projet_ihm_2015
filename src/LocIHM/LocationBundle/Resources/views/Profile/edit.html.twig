@@ -1,0 +1,13 @@
+{% extends "LocIHMLocationBundle::layout.html.twig" %}
+
+{% block corps %}
+	<div class="row">
+		<div class="small-6 columns small-centered">
+			<div class="panel">
+				{% block fos_user_content %}
+				{% include "LocIHMLocationBundle:Profile:edit_content.html.twig" %}
+				{% endblock fos_user_content %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

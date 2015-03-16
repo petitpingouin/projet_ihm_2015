@@ -41,5 +41,9 @@ loc_ihm_location_recherche_forfait:
         _method: POST
 
 loc_ihm_location_user_index:
-    path: /user/index
+    path: /user/
     defaults: { _controller: LocIHMLocationBundle:User:index}
+
+loc_ihm_location_user_delete:
+    path:     /user/{id}/delete
+    defaults: { _controller: "LocIHMLocationBundle:User:delete" }

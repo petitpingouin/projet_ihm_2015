@@ -83,3 +83,6 @@ fos_user:
     registration:
         form:
             type: locihm_location_registration
+    profile:
+        form:
+            type: locihm_location_user_registration

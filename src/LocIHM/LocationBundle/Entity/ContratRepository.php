@@ -64,6 +64,7 @@ class ContratRepository extends EntityRepository
 			->orWhere('contrat.dateDebut < :now AND contrat.dateFin > :now')
 			->setParameter('now', new \DateTime("now"), \Doctrine\DBAL\Types\Type::DATETIME)
 			->setParameter('idUser', $user)
+			->orderBy('contrat.dateDebut', 'ASC');
 		;
 
 		$qb = $qb->getQuery()->getResult();
@@ -77,12 +78,12 @@ class ContratRepository extends EntityRepository
 	public function getContratPassedByDateAndUser($user) {
 		$qb = $this->createQueryBuilder('contrat');
 
-		$now = new \DateTime('2010-03-11');
 		$qb
 			->where('contrat.user = :idUser')
 			->andWhere('contrat.dateFin < :now')
 			->setParameter('now', new \DateTime("now"), \Doctrine\DBAL\Types\Type::DATETIME)
 			->setParameter('idUser', $user)
+			->orderBy('contrat.dateFin', 'DESC');
 		;
 
 		$qb = $qb->getQuery()->getResult();

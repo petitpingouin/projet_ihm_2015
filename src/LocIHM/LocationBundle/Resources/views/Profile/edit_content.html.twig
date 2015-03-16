@@ -1,0 +1,98 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+    
+    {{ form_errors(form) }}
+
+
+    <fieldset>
+    	<legend>{{ 'message.user.vosinfos'|trans|title }}</legend>
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.nom, 'Nom'|trans) }}
+	    		{{ form_widget(form.nom) }}
+	    		{{ form_errors(form.nom) }}
+	    	</div>
+	    </div>
+
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.prenom, 'Prénom'|trans) }}
+	    		{{ form_widget(form.prenom) }}
+	    		{{ form_errors(form.prenom) }}
+	    	</div>
+	    </div>
+
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.dateNaissance, 'Date de Naissance'|trans) }}
+	    		{{ form_widget(form.dateNaissance, {'attr' : { 'placeholder' : 'dd-mm-yyyy'}}) }}
+	    		{{ form_errors(form.dateNaissance) }}
+	    	</div>
+	    </div>
+
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.adresse, 'Adresse'|trans) }}
+	    		{{ form_widget(form.adresse) }}
+	    		{{ form_errors(form.adresse) }}
+	    	</div>
+	    </div>
+
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.tel1, 'Téléphone'|trans) }}
+	    		{{ form_widget(form.tel1) }}
+	    		{{ form_errors(form.tel1) }}
+	    	</div>
+	    </div>
+
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.tel2, 'Portable'|trans) }}
+	    		{{ form_widget(form.tel2) }}
+	    		{{ form_errors(form.tel2) }}
+	    	</div>
+	    </div>
+
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.email, 'Email'|trans) }}
+	    		{{ form_widget(form.email) }}
+	    		{{ form_errors(form.email) }}
+	    	</div>
+	    </div>
+	</fieldset>
+
+	<fieldset>
+		<legend>{{ 'message.user.votrecompte'|trans|title }}</legend>
+
+		<div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.username, 'Nom dutilisateur'|trans) }}
+	    		{{ form_widget(form.username) }}
+	    		{{ form_errors(form.username) }}
+	    	</div>
+	    </div>
+
+	    <div class="row">
+	    	<div class="small-12 columns">
+	    		{{ form_label(form.plainPassword, 'Identification'|trans) }}
+	    		{{ form_widget(form.plainPassword) }}
+	    		{{ form_errors(form.plainPassword) }}
+	    	</div>
+	    </div>
+	</fieldset>
+
+	{{ form_rest(form) }}
+
+    <div class="row">
+    	<div class="small-6 columns">
+    		<a href="{{ path('loc_ihm_location_user_index') }}" class="button expand">Back</a>
+    	</div>
+    	<div class="small-6 columns">
+        	<input type="submit" value="{{ 'registration.submit'|trans }}" class="button expand"/>
+        </div>
+    </div>
+
+{{ form_end(form) }}

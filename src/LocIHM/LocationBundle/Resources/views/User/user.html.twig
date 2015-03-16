@@ -10,60 +10,107 @@
 {% block corps %}
 	<div class="row">
 		<div class="small-12 columns">
+			<div class="row">
+				<div class="small-12 columns">
+					<ul class="button-group radius even-2">
+						<li><a href="{{ path('loc_ihm_location_user_index') }}" class="button">{{ 'message.user.moncompte'|trans|title }}</a></li>
+						<li><a href="{{ path('loc_ihm_location_recherche') }}" class="button">{{ 'word.reserver'|trans|title }}</a></li>
+					</ul>
+				</div>
+			</div>
+
 			<div class="panel">
-				<h3>{{ 'titre.voscontrats'|trans|title }}</h3>
-				<table>
-					<thead>
-						<tr>
-							<th>N°</th>
-							<th>Depart</th>
-							<th>Retour</th>
-							<th>Vehicule</th>
-							<th>Forfait</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for contrat in contrats %}
-							<tr>
-								<td>{{ contrat.id }}</td>
-								<td>{{ contrat.dateDebut|date('d/m/Y') }}</td>
-								<td>{{ contrat.dateFin|date('d/m/Y') }}</td>
-								<td>{{ contrat.getVehicule() }}</td>
-								<td>{{ contrat.getForfait().getNom() }}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+
+				<div class="row">
+					<div class="small-12 columns">
+						<h3>{{ 'titre.voscontrats'|trans|title }}</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>N°</th>
+									<th>Depart</th>
+									<th>Retour</th>
+									<th>Vehicule</th>
+									<th>Forfait</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for contrat in contrats %}
+									<tr>
+										<td>{{ contrat.id }}</td>
+										<td>{{ contrat.dateDebut|date('d/m/Y') }}</td>
+										<td>{{ contrat.dateFin|date('d/m/Y') }}</td>
+										<td>{{ contrat.getVehicule() }}</td>
+										<td>{{ contrat.getForfait().getNom() }}</td>
+										<td>
+											{% if contrat.dateDebut|date('d/m/Y') > "now"|date('d/m/Y') %}
+												<a href="{{ path('loc_ihm_location_user_delete', { 'id': contrat.id }) }}"><i class="fi-x size-24"></i></a>
+											{% endif %}
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
 
 				<hr/>
 
-				<h3>{{ 'titre.contratspasses'|trans|title }}</h3>
-				<table>
-					<thead>
-						<tr>
-							<th>N°</th>
-							<th>Depart</th>
-							<th>Retour</th>
-							<th>Vehicule</th>
-							<th>Forfait</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for contratP in contratsP %}
-							<tr>
-								<td>{{ contratP.id }}</td>
-								<td>{{ contratP.dateDebut|date('d/m/Y') }}</td>
-								<td>{{ contratP.dateFin|date('d/m/Y') }}</td>
-								<td>{{ contratP.getVehicule() }}</td>
-								<td>{{ contratP.getForfait().getNom() }}</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+				<div class="row">
+					<div class="small-12 columns">
+						<h3>{{ 'titre.contratspasses'|trans|title }}</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>N°</th>
+									<th>Depart</th>
+									<th>Retour</th>
+									<th>Vehicule</th>
+									<th>Forfait</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for contratP in contratsP %}
+									<tr>
+										<td>{{ contratP.id }}</td>
+										<td>{{ contratP.dateDebut|date('d/m/Y') }}</td>
+										<td>{{ contratP.dateFin|date('d/m/Y') }}</td>
+										<td>{{ contratP.getVehicule() }}</td>
+										<td>{{ contratP.getForfait().getNom() }}</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
 
 				<hr/>
 
-				<h3>{{ 'titre.parlonsdevous'|trans|title }}</h3>
+				<div class="row">
+					<div class="small-12 columns">
+						<h3>{{ 'titre.parlonsdevous'|trans|title }}</h3>
+						<div class="row">
+							<div class="small-12 columns">
+								<ul class="square">
+									<li>{{ user.nom }} {{ user.prenom }}</li>
+									<li>{{ 'message.user.nele'|trans|title }}: {{ user.dateNaissance|date('d/m/Y') }}</li>
+								</ul>
+								<p><strong>{{ 'message.user.coordonnees'|trans|title }}</strong></p>
+								<ul>
+									<li>{{ 'message.user.adresse'|trans|title }}: {{ user.adresse }}</li>
+									<li>{{ 'message.user.telephone'|trans|title }}: {{ user.tel1 }}</li>
+									<li>{{ 'message.user.telephoneport'|trans|title }}: {{ user.tel2 }}</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="small-12 columns text-center">
+								<a href="{{ path('fos_user_profile_edit') }}" class="button">{{ 'message.user.modifinfo'|trans }}</a>
+							</div>
+						</div>
+					</div>
+				</div>
 
 			</div>
 		</div>

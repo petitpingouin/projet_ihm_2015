@@ -120,5 +120,14 @@ message:
 
     recherche:
         pasdevehicule: aucun véhicule disponible
-
+    user:
+        nele: né le
+        coordonnees: coordonnées
+        adresse: adresse
+        telephone: téléphone
+        telephoneport: téléphone portable
+        modifinfo: Modifier mes informations
+        vosinfos: vos informations
+        votrecompte: votre compte
+        moncompte: mon compte
 

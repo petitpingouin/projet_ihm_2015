@@ -4,3 +4,12 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: locihm_location_registration }
+    locihm_location.profile.form.type:
+        class: LocIHM\LocationBundle\Form\Type\ProfileFormType
+        tags:
+            - {name: form.type, alias: locihm_location_user_registration }
+    locihm_location.profile_edit:
+        class: LocIHM\LocationBundle\EventListener\ProfileEditListener
+        arguments: [@router]
+        tags:
+           - { name: kernel.event_subscriber }

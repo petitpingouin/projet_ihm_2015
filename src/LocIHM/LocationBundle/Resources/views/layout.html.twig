@@ -60,6 +60,12 @@
 
 	<div class="row">
 		<div class="small-12 columns">
+			{% for flashMessage in app.session.flashbag.get('alert') %}
+			    <div data-alert class="flash-alert alert-box alert">
+			        {{ flashMessage }}
+			        <a href="#" class="close">&times;</a>
+			    </div>
+			{% endfor %}
 			{% for flashMessage in app.session.flashbag.get('notice') %}
 			    <div data-alert class="flash-notice alert-box">
 			        {{ flashMessage }}

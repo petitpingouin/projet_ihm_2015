@@ -38,6 +38,7 @@ word:
             prixjournalier: prix journalier
             typevehicule: type du véhicule
             agence: agence du véhicule
+        user: client
 
 titre:
     reservezvehicule: Réservez maintenant votre véhicule

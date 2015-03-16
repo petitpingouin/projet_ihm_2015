@@ -74,7 +74,27 @@
 						</div>
 					</div>
 				</div>
-				
+
+
+				<hr/>
+				{% if is_granted('ROLE_ADMIN') %}
+					<div class="row">
+					<div class="small-12 columns">
+						<div class="row">
+							<div class="small-12 columns">
+								<h3 class="subheader">{{ 'word.table.user'|trans|title }}</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="small-6 small-centered columns">
+								{{ form_widget(form.user) }}
+								{{ form_errors(form.user) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+
 				<hr/>
 
 				<div class="row">

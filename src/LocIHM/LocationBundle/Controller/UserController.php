@@ -133,12 +133,27 @@ class UserController extends Controller
        	 	$contrat->setUser($user);
        	}
 
-        $formBuilder = $this->createFormBuilder($contrat)
-        	->add('forfait', 'entity', array(
-        		'class' => 'LocIHMLocationBundle:Forfait',
-        		'property' => 'nom',
-        		'placeholder' => 'Choisissez un forfait'
+
+        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            $formBuilder = $this->createFormBuilder($contrat)
+            ->add('forfait', 'entity', array(
+                'class' => 'LocIHMLocationBundle:Forfait',
+                'property' => 'nom',
+                'placeholder' => 'Choisissez un forfait'
+        ))
+            ->add('user', 'entity', array(
+                'class' => 'LocIHMLocationBundle:User',
+                'property' => 'username',
+                'placeholder' => 'Choisissez un utilisateur'));
+        }
+        else{
+            $formBuilder = $this->createFormBuilder($contrat)
+            ->add('forfait', 'entity', array(
+                'class' => 'LocIHMLocationBundle:Forfait',
+                'property' => 'nom',
+                'placeholder' => 'Choisissez un forfait'
         ));
+        }
 
         $form = $formBuilder->getForm();
 

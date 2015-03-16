@@ -38,7 +38,7 @@ class Agence
     /**
      * @var string
      *
-     * @ORM\Column(name="coordonnees", type="string", length=255)
+     * @ORM\Column(name="coordonnees", type="string", length=255, nullable=true)
      */
     private $coordonnees;
 

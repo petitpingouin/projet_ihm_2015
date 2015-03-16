@@ -1,0 +1,15 @@
+{# src/OC/PlatformBundle/Resources/views/Admin/index.html.twig #}
+
+{% extends "LocIHMLocationBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	{{ 'word.utilisateurs'|trans|title}} - {{ parent() }}
+{% endblock %}
+
+{% block corps %}
+	<div class="row">
+		<div class="small-12 columns">
+			<h3>{{ 'word.utilisateurs'|trans|title }}</h3>
+		</div>
+	</div>
+{% endblock %}

@@ -47,3 +47,15 @@ loc_ihm_location_user_index:
 loc_ihm_location_user_delete:
     path:     /user/{id}/delete
     defaults: { _controller: "LocIHMLocationBundle:User:delete" }
+
+loc_ihm_location_admin_users:
+    path: /admin/users
+    defaults: { _controller: "LocIHMLocationBundle:Admin:users" }
+
+loc_ihm_location_admin_add_user:
+    path: /admin/users/add
+    defaults: { _controller: LocIHMLocationBundle:Admin:addUser" }
+
+loc_ihm_location_admin_delete_user:
+    path: /admin/users/{id}/delete
+    defaults: { _controller: LocIHMLocationBundle:Admin:deleteUser" }

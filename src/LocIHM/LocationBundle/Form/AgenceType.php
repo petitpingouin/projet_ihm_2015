@@ -17,7 +17,6 @@ class AgenceType extends AbstractType
         $builder
             ->add('nom')
             ->add('adresse')
-            ->add('coordonnees')
             ->add('submit', 'submit');
         ;
     }

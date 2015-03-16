@@ -32,14 +32,6 @@
                     </div>
 
                    <div class="row">
-                        <div class="small-12 columns">  
-                            {{ form_label(edit_form.coordonnees, 'word.table.agence.coordonnees'|trans|title ) }}
-                            {{ form_widget(edit_form.coordonnees) }}
-                            {{ form_errors(edit_form.coordonnees) }}                  
-                        </div>
-                    </div>
-
-                   <div class="row">
                         <div class="small-12 columns">
                             {{ form_widget(edit_form.submit, { 'label': 'form.valider'|trans|title }) }}
                             {{ form_rest(edit_form) }}

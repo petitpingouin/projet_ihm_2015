@@ -17,7 +17,6 @@
                         <th>{{'word.table.id'|trans|title}}</th>
                         <th>{{'word.table.nom'|trans|title}}</th>
                         <th>{{'word.table.agence.adresse'|trans|title}}</th>
-                        <th>{{'word.table.agence.coordonnees'|trans|title}}</th>
                         <th>{{'word.table.action.title'|trans|title}}</th>
                     </tr>
                 </thead>
@@ -27,7 +26,6 @@
                         <td><a href="{{ path('agence_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                         <td>{{ entity.nom }}</td>
                         <td>{{ entity.adresse }}</td>
-                        <td>{{ entity.coordonnees }}</td>
                         <td>
                             <a href="{{ path('agence_show', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.show'|trans|title}}</a>
                             <a href="{{ path('agence_edit', { 'id': entity.id }) }}" class="button tiny">{{'word.table.action.edit'|trans|title}}</a>

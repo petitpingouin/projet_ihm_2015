@@ -7,9 +7,13 @@ word:
     resume: résumé
     total: total
     retour: retour
+    utilisateurs: utilisateurs
+    username: username
+    administrateurs: administrateurs
     table:
         id: id
         nom: nom
+        prenom: prénom
         agence:
             adresse: adresse
             coordonnees: coordonnées
@@ -37,7 +41,9 @@ word:
             prixjournalier: prix journalier
             typevehicule: type du véhicule
             agence: agence du véhicule
-        user: client
+        user:
+            nomutil: Nom d'utilisateur
+
 
 titre:
     reservezvehicule: Réservez maintenant votre véhicule

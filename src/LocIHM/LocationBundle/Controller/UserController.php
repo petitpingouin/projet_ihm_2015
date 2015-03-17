@@ -126,13 +126,6 @@ class UserController extends Controller
         $contrat->setDateDebut($dateDepart);
         $contrat->setDateFin($dateArrivee);
         $contrat->setVehicule($vehicule);
-        if($user === null) {
-        	// Par principe de sécurité
-        	return $this->redirectToRoute('fos_user_security_login');
-        } else {
-       	 	$contrat->setUser($user);
-       	}
-
 
         if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             $formBuilder = $this->createFormBuilder($contrat)
@@ -140,19 +133,27 @@ class UserController extends Controller
                 'class' => 'LocIHMLocationBundle:Forfait',
                 'property' => 'nom',
                 'placeholder' => 'Choisissez un forfait'
-        ))
+            ))
             ->add('user', 'entity', array(
                 'class' => 'LocIHMLocationBundle:User',
                 'property' => 'username',
-                'placeholder' => 'Choisissez un utilisateur'));
+                'placeholder' => 'Choisissez un utilisateur'
+            ));
         }
         else{
+            if($user === null) {
+                // Par principe de sécurité
+                return $this->redirectToRoute('fos_user_security_login');
+            } else {
+                $contrat->setUser($user);
+            }
+
             $formBuilder = $this->createFormBuilder($contrat)
             ->add('forfait', 'entity', array(
                 'class' => 'LocIHMLocationBundle:Forfait',
                 'property' => 'nom',
                 'placeholder' => 'Choisissez un forfait'
-        ));
+            ));
         }
 
         $form = $formBuilder->getForm();

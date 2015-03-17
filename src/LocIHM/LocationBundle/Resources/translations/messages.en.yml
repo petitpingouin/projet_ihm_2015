@@ -12,6 +12,7 @@ word:
     administrateurs: administrators
     recap: summary
     contrats: contracts
+    vehicules: vehicle
     table:
         id: id
         nom: last name
@@ -140,10 +141,8 @@ message:
         votrecompte: your account
         moncompte: my account
     dashboard:
-        nbcontrats: you have %nbcontrats% total
-        nbcontratsencours: you have %nbcontratsEc% in progress
-        nbuser: you have %nbuser% users
-        nbadmin: you have %nbadmin% administrators
+        nbcontrats: you have %nbcontrats% contract(s) total
+        nbcontratsencours: you have %nbcontratsEc% contract(s) in progress
         nbvoitures: you have %nbvoit% whose %nbtour% passenger cars and %nbutil% utility cars
 
 

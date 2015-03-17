@@ -100,10 +100,16 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        
 
-        return $this->render('LocIHMLocationBundle:Admin:users.html.twig', array(
-            
+        $stats['nbContrats'] = $em->getRepository('LocIHMLocationBundle:Contrat')->countContrats();
+        $stats['nbContratsEC'] = $em->getRepository('LocIHMLocationBundle:Contrat')->countContratsEnCours();
+        $stats['nbVehicules'] = $em->getRepository('LocIHMLocationBundle:Vehicule')->countVehicules();
+        $stats['nbVehiculesTourisme'] = $em->getRepository('LocIHMLocationBundle:Vehicule')->countVehiculesByType('Tourisme');
+        $stats['nbVehiculesUtilitaire'] = $em->getRepository('LocIHMLocationBundle:Vehicule')->countVehiculesByType('Utilitaire');
+
+
+        return $this->render('LocIHMLocationBundle:Admin:dashboard.html.twig', array(
+            'stats' => $stats,
         ));
     }
 }

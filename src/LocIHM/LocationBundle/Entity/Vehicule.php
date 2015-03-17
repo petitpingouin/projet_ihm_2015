@@ -2,6 +2,8 @@
 
 namespace LocIHM\LocationBundle\Entity;
 
+use Eko\FeedBundle\Item\Writer\ItemInterface;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="LocIHM\LocationBundle\Entity\VehiculeRepository")
  */
-class Vehicule
+class Vehicule implements ItemInterface
 {
     /**
      * @var integer
@@ -242,4 +244,27 @@ class Vehicule
     {
         return $this->agence;
     }
+
+    /*
+     * FONCTIONS RSS
+     */
+
+    public function getFeedItemTitle() {
+        return $this->__toString();
+    }
+
+    public function getFeedItemDescription() {
+        $rep = $this->puissance.' CV. Couleur: '.$this->couleur;
+        return $rep;
+    }
+    
+    public function getFeedItemPubDate() {
+        return new \DateTime("now");
+    }
+
+    public function getFeedItemLink() {
+        return '';
+    }
+
+
 }

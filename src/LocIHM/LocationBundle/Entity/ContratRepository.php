@@ -57,10 +57,9 @@ class ContratRepository extends EntityRepository
 	public function getContratByDateAndUser($user) {
 		$qb = $this->createQueryBuilder('contrat');
 
-		$now = new \DateTime('2010-03-11');
 		$qb
 			->where('contrat.dateDebut > :now')
-			->orWhere('contrat.dateDebut < :now AND contrat.dateFin > :now')
+			->orWhere('contrat.dateDebut <= :now AND contrat.dateFin >= :now')
 			->setParameter('now', new \DateTime("now"), \Doctrine\DBAL\Types\Type::DATETIME)
 			->andWhere('contrat.user = :idUser')
 			->setParameter('idUser', $user)
@@ -89,5 +88,33 @@ class ContratRepository extends EntityRepository
 		$qb = $qb->getQuery()->getResult();
 
 		return $qb;
+	}
+
+	/*
+	 * Compte le nombre de contrat total
+	 */
+	public function countContrats()
+	{
+		$qb = $this->createQueryBuilder('contrat');
+
+		$qb
+			->select('COUNT(contrat.id)')
+		;
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	/*
+	 * Compte le nombre de contrat en cours
+	 */
+	public function countContratsEnCours()
+	{
+		$qb = $this->createQueryBuilder('contrat');
+
+		$qb
+			->select('COUNT(contrat.id)')
+			->orWhere('contrat.dateDebut <= :now AND contrat.dateFin >= :now')
+			->setParameter('now', new \DateTime("now"), \Doctrine\DBAL\Types\Type::DATETIME)
+		;
+		return $qb->getQuery()->getSingleScalarResult();
 	}
 }

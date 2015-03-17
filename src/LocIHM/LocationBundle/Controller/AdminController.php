@@ -95,4 +95,15 @@ class AdminController extends Controller
 
     	return $this->redirect($this->generateUrl('loc_ihm_location_admin_users'));
     }
+
+    public function dashboardAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        
+
+        return $this->render('LocIHMLocationBundle:Admin:users.html.twig', array(
+            
+        ));
+    }
 }

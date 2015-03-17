@@ -1,0 +1,29 @@
+.footer {
+	background-color: #272822;
+	height: 200px;
+	padding:20px 10px;
+	margin-top:30px;
+}
+.footer p {
+	color: white;
+	text-align: center;
+}
+#content {
+	margin-top:20px;
+}
+.tabs dd.active a, .tabs .tab-title.active a {
+    background-color: red;
+    color: #FFFFFF;
+}
+
+#table_reserv {
+	width: 100%;
+}
+
+.button {
+	background-color: red;
+}
+
+.top-bar-section ul li > a.button {
+	background-color: red;
+}

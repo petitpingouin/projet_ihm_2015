@@ -41,8 +41,24 @@ class DefaultController extends Controller
         }
     }
 
+    public function changeStyleAction(Request $request)
+    {
+        // Récupère les var sessions
+        $session = $request->getSession();
+        $style = $session->get('style');
 
-    // Redirection pour réservation
+        if($style == 'rouge') {
+            $session->set('style', 'bleu');
+        } else {
+            $session->set('style', 'rouge');
+        }
+
+        $url = $request->headers->get('referer');
+        if(empty($url)) {
+            return $this->redirect($this->generateUrl('loc_ihm_location_homepage'));
+        }
+        return $this->redirect($url);
+    }
 
     
 }

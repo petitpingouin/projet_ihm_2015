@@ -10,6 +10,8 @@ word:
     utilisateurs: utilisateurs
     username: username
     administrateurs: administrateurs
+    recap: récapitulatif
+    contrats: contrats
     table:
         id: id
         nom: nom
@@ -137,4 +139,11 @@ message:
         vosinfos: vos informations
         votrecompte: votre compte
         moncompte: mon compte
+    dashboard:
+        nbcontrats: Vous avez %nbcontrats% au total
+        nbcontratsencours: Vous avez %nbcontratsEc% en cours
+        nbuser: Vous avez %nbuser% utilisateurs
+        nbadmin: Vous avez %nbadmin% administrateurs
+        nbvoitures: Vous avez %nbvoit% dont %nbtour% voitures de tourisme et %nbutil% utilitaires
+
 

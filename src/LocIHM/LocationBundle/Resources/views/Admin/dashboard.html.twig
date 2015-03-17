@@ -1,0 +1,28 @@
+{# src/OC/PlatformBundle/Resources/views/Admin/index.html.twig #}
+
+{% extends "LocIHMLocationBundle:Admin:layout.html.twig" %}
+
+{% block title %}
+	Dashboard - {{ parent() }}
+{% endblock %}
+
+
+
+
+{% block corps %}
+
+<div class="row">
+	<div class="small-12 columns">
+		<h3>{{ 'word.recap'|trans|title }}</h3>
+		<div class="panel">
+			<div class="row">
+				<div class="small-6 columns">
+					<h5>{{ 'word.contrats'|trans|title }}</h5>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -167,6 +167,9 @@ class UserController extends Controller
 
             $request->getSession()->getFlashBag()->add('notice', 'Réservation enregistrée');
 
+            if(true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+                return $this->redirect($this->generateUrl('contrat'));
+            }
             return $this->redirect($this->generateUrl('loc_ihm_location_user_index'));
         }
 

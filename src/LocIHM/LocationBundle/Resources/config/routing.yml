@@ -26,6 +26,10 @@ loc_ihm_location_homepage:
     path:     /
     defaults: { _controller: LocIHMLocationBundle:Default:index}
 
+loc_ihm_location_changeStyle:
+    path: /changeStyle
+    defaults: { _controller: LocIHMLocationBundle:Default:changeStyle }
+
 loc_ihm_location_recherche:
     path:   /user/recherche
     defaults: { _controller: LocIHMLocationBundle:User:recherche}
@@ -47,6 +51,10 @@ loc_ihm_location_user_index:
 loc_ihm_location_user_delete:
     path:     /user/{id}/delete
     defaults: { _controller: LocIHMLocationBundle:User:delete }
+
+loc_ihm_location_admin_dashboard:
+    path: /admin
+    defaults: { _controller: LocIHMLocationBundle:Admin:dashboard }
 
 loc_ihm_location_admin_users:
     path: /admin/users

@@ -9,7 +9,72 @@
 {% block corps %}
 	<div class="row">
 		<div class="small-12 columns">
-			<h3>{{ 'word.utilisateurs'|trans|title }}</h3>
+
+			<div class="row">
+				<div class="small-12 columns">
+					<h3>{{ 'word.administrateurs'|trans|title }}</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>{{ 'word.table.nom'|trans|title }}</th>
+								<th>{{ 'word.table.prenom'|trans|title }}</th>
+								<th>Email</th>
+								<th>{{ 'word.username'|trans|title }}</th>
+								<th>{{ 'word.table.user.nomutil'|trans|title }}</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in users %}
+								{% if user.getRoles[0] == 'ROLE_ADMIN' %}
+									<tr>
+										<td>{{ user.getNom }}</td>
+										<td>{{ user.getPrenom }}</td>
+										<td>{{ user.getEmail }}</td>
+										<td>{{ user.getUsername }}</td>
+										<td>{{ user.getRoles[0] }}</td>
+										<td><a href="{{ path('loc_ihm_location_admin_delete_user', { 'username': user.getUsername }) }}"><i class="fi-x size-24"></i></a></td>
+										<td><a href="{{ path('loc_ihm_location_admin_demote_user', { 'username': user.getUsername }) }}"><i class="fi-arrow-down size-24"></i></a></td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="small-12 columns">
+					<h3>{{ 'word.utilisateurs'|trans|title }}</h3>
+					<table>
+						<thead>
+							<tr>
+								<th>{{ 'word.table.nom'|trans|title }}</th>
+								<th>{{ 'word.table.prenom'|trans|title }}</th>
+								<th>Email</th>
+								<th>{{ 'word.username'|trans|title }}</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in users %}
+								{% if user.getRoles[0] == 'ROLE_USER' %}
+									<tr>
+										<td>{{ user.getNom }}</td>
+										<td>{{ user.getPrenom }}</td>
+										<td>{{ user.getEmail }}</td>
+										<td>{{ user.getRoles[0] }}</td>
+										<td><a href="{{ path('loc_ihm_location_admin_delete_user', { 'username': user.getUsername }) }}"><i class="fi-x size-24"></i></a></td>
+										<td><a href="{{ path('loc_ihm_location_admin_promote_user', { 'username': user.getUsername }) }}"><i class="fi-arrow-up size-24"></i></a></td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock %}

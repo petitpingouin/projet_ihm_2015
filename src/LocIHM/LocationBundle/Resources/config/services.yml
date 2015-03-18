@@ -13,3 +13,8 @@ services:
         arguments: [@router]
         tags:
            - { name: kernel.event_subscriber }
+    locihm_location.locale_listener:
+        class: LocIHM\LocationBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }

@@ -13,6 +13,7 @@ word:
     recap: récapitulatif
     contrats: contrats
     vehicules: véhicules
+    reservation: réservation
     table:
         id: id
         nom: nom
@@ -79,7 +80,6 @@ titre:
     votrereservation: votre réservation
     votrerecherche: votre recherche
     vehiculesdispo: Véhicules disponibles
-    votrereservation: votre réservation
     voscontrats: vos contrats
     contratspasses: contrats passés
     parlonsdevous: parlons de vous

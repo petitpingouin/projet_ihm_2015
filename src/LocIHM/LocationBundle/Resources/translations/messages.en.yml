@@ -13,6 +13,7 @@ word:
     recap: summary
     contrats: contracts
     vehicules: vehicle
+    reservation: reservation
     table:
         id: id
         nom: last name
@@ -49,8 +50,8 @@ word:
 
 
 titre:
-    reservezvehicule: reserve your vehicle
-    presentation: go without worrying about the rest
+    reservezvehicule: Reserve your vehicle
+    presentation: Go without worrying about the rest
     agence: 
         menu: agency menu
         new: new agency
@@ -76,10 +77,9 @@ titre:
         new: new vehicle
         show: shox vehicle
         edit: edit vehicle
-    votrereservation: your reserving
+    votrereservation: your reservation
     votrerecherche: search
     vehiculesdispo: available vehicles
-    votrereservation: your reserving
     voscontrats: your contracts
     contratspasses: contracts awarded
     parlonsdevous: parlons de vous

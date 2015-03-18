@@ -20,7 +20,7 @@ loc_ihm_location_agence:
 
 loc_ihm_location_homepage:
     path:     /
-    defaults: { _controller: LocIHMLocationBundle:Default:index}
+    defaults: { _controller: LocIHMLocationBundle:Default:index }
 
 loc_ihm_location_changeStyle:
     path: /changeStyle

@@ -33,9 +33,27 @@
 
 	<section class="top-bar-section">
 		<ul class="left">
+			<li class="divider"></li>
 			<li class="has-form">
-  				<a href="{{ path('loc_ihm_location_changeStyle') }}" class="button tiny">Style</a>		
+  				<a href="{{ path('loc_ihm_location_changeStyle') }}" class="button tiny">Style</a>
 			</li>
+			<li class="divider"></li>
+			<li class="has-dropdown">
+
+				{% set routeName = app.request.attributes.get("_route") %}
+				{% set routeParams = app.request.attributes.get("_route_params") %}
+				{% set locales = ['fr', 'en'] %}
+					
+				<a href="#">{{ app.request.getLocale()|upper }}</a>
+				<ul class="dropdown">
+					<ul>
+					{% for locale in locales %}
+					  <li><a href="{{ path(routeName, routeParams|merge({"_locale": locale})) }}">{{ locale|upper }}</a></li>
+					{% endfor %}
+					</ul>
+				</ul>
+			</li>
+			<li class="divider"></li>
 		</ul>
 		<!-- Right -->
 		<ul class="right">

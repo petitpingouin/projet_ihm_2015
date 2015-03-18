@@ -69,5 +69,4 @@ class DefaultController extends Controller
 
         return new Response($feed->render('rss'));
     }
-    
 }

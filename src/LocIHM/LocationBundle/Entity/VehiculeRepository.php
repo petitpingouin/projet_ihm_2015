@@ -63,4 +63,34 @@ class VehiculeRepository extends EntityRepository
 		}
 	}
 
+	/*
+	 * Compte le nombre de voitures
+	 */
+	public function countVehicules()
+	{
+		$qb = $this->createQueryBuilder('vehicule');
+
+		$qb
+			->select('COUNT(vehicule.id)')
+		;
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
+	/*
+	 * Compte le nombre de voitures de tourisme
+	 */
+	public function countVehiculesByType($categorie)
+	{
+		$qb = $this->createQueryBuilder('vehicule');
+
+		$qb
+			->join('vehicule.typeVehicule', 'typeVehicule')
+			->addSelect('typeVehicule')
+			->select('COUNT(vehicule.id)')
+			->where('typeVehicule.categorie = :categorie')
+			->setParameter('categorie', $categorie)
+		;
+		return $qb->getQuery()->getSingleScalarResult();
+	}
+
 }

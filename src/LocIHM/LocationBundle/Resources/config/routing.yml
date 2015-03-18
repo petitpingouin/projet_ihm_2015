@@ -18,10 +18,6 @@ loc_ihm_location_agence:
     resource: "@LocIHMLocationBundle/Resources/config/routing/agence.yml"
     prefix:   /admin/agence
 
-loc_ihm_location_admin:
-    resource: "@LocIHMLocationBundle/Resources/config/routing/admin.yml"
-    prefix: /admin
-
 loc_ihm_location_homepage:
     path:     /
     defaults: { _controller: LocIHMLocationBundle:Default:index}
@@ -75,3 +71,7 @@ loc_ihm_location_admin_demote_user:
 loc_ihm_location_admin_promote_user:
     path: /admin/users/{username}/promote
     defaults: { _controller: LocIHMLocationBundle:Admin:promoteUser }
+
+loc_ihm_location_rss_vehicules:
+    path: /rss/vehicules
+    defaults: { _controller: LocIHMLocationBundle:Default:feedVehicules }

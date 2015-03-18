@@ -86,3 +86,12 @@ fos_user:
     profile:
         form:
             type: locihm_location_user_registration
+
+#RSS
+eko_feed:
+    feeds:
+        Vehicule:
+            title: 'Nos Vehicules'
+            description: 'Dernièrs véhicules'
+            link: #
+            encoding: 'utf-8'

@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new LocIHM\LocationBundle\LocIHMLocationBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Eko\FeedBundle\EkoFeedBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

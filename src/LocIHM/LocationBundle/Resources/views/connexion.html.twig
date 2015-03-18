@@ -1,7 +1,7 @@
 {% if is_granted("ROLE_ADMIN") %}
 	{# Utilisateur connecté #}
 	<li>
-		<a href="{{ path('fos_user_profile_show') }}">{{ 'word.administration'|trans|title }}</a>
+		<a href="{{ path('loc_ihm_location_user_index') }}">{{ 'message.user.moncompte'|trans|title }}</a>
 	</li>
 	<li class="divider"></li>
 	<li class="has-form">

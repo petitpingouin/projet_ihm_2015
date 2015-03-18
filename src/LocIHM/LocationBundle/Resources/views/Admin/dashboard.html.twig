@@ -1,4 +1,4 @@
-{# src/OC/PlatformBundle/Resources/views/Admin/index.html.twig #}
+{# src/OC/PlatformBundle/Resources/views/Admin/dashboard.html.twig #}
 
 {% extends "LocIHMLocationBundle:Admin:layout.html.twig" %}
 
@@ -13,12 +13,36 @@
 
 <div class="row">
 	<div class="small-12 columns">
-		<h3>{{ 'word.recap'|trans|title }}</h3>
-		<div class="panel">
-			<div class="row">
-				<div class="small-6 columns">
-					<h5>{{ 'word.contrats'|trans|title }}</h5>
-					
+		<div class="row">
+			<div class="small-12 columns">
+				<ul class="button-group radius even-2">
+					<li><a href="{{ path('loc_ihm_location_recherche') }}" class="button">Réservation</a></li>
+					<li><a href="{{ path('contrat') }}" class="button">Contrats</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-12 columns">
+				<h3>{{ 'word.recap'|trans|title }}</h3>
+				<div class="panel">
+					<div class="row">
+						<div class="small-6 columns">
+							<h5>{{ 'word.contrats'|trans|title }}</h5>
+							<ul>
+								<li>{{ 'message.dashboard.nbcontrats'|trans({'%nbcontrats%': stats['nbContrats']}) }}</li>
+								<li>{{ 'message.dashboard.nbcontratsencours'|trans({'%nbcontratsEc%': stats['nbContratsEC']}) }}</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="small-6 columns">
+							<h5>{{ 'word.vehicules'|trans|title }}</h5>
+							<ul>
+								<li>{{ 'message.dashboard.nbvoitures'|trans({'%nbvoit%': stats['nbVehicules'], '%nbtour%': stats['nbVehiculesTourisme'], '%nbutil%': stats['nbVehiculesUtilitaire']}) }}</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

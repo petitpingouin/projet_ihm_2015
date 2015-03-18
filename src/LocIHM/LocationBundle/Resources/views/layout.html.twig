@@ -40,7 +40,7 @@
 		<!-- Right -->
 		<ul class="right">
 		{% if is_granted("ROLE_ADMIN") %}
-			<li><a href="#">Dashboard</a></li>
+			<li><a href="{{ path('loc_ihm_location_admin_dashboard') }}">Dashboard</a></li>
 			<li class="divider"></li>
 			<li><a href="{{ path('loc_ihm_location_recherche') }}">Réservation</a></li>
 			<li class="divider"></li>
@@ -94,7 +94,7 @@
 	<div class="row">
 		<div class="small-12 column">
 			<div class="footer">
-				<p>-- LocIHM --<br/>{{ 'footer.create'|trans }}</p>
+				<p>-- LocIHM --<br/>{{ 'footer.create'|trans }}<br/><a href="{{ path('loc_ihm_location_rss_vehicules') }}" class="button tiny">RSS</a></p>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,148 @@
+word:
+    accueil: welcome
+    administration: admnistration
+    couleur: color
+    jour: day
+    reserver: reserve
+    resume: resume
+    total: total
+    retour: return
+    utilisateurs: users
+    username: username
+    administrateurs: administrators
+    recap: summary
+    contrats: contracts
+    vehicules: vehicle
+    table:
+        id: id
+        nom: last name
+        prenom: first name
+        agence:
+            adresse: address
+            coordonnees: contact information
+        action:
+            title: actions
+            edit: edit
+            show: show
+        contrat:
+            datedebut: departure date
+            datefin: arrival
+            user: user
+            forfait: package name
+        forfait:
+            forfait: package
+            kminclus: km included
+            prix: price
+        typevehicule:
+            categorie: category
+            sscategorie: subcategory
+        vehicule:
+            marque: label
+            modele: model
+            puissance: power
+            couleur: color
+            prixjournalier: daily price
+            typevehicule: vehicle type
+            agence: vehicle agency
+        user:
+            nomutil: username
+
+
+titre:
+    reservezvehicule: reserve your vehicle
+    presentation: go without worrying about the rest
+    agence: 
+        menu: agency menu
+        new: new agency
+        show: show agency
+        edit: edit agency
+    contrat:
+        menu: contract menu
+        new: new contract
+        show: show contract
+        edit: edit contract
+    forfait: 
+        menu: package menu
+        new: new package
+        show: show package
+        edit: edit package
+    typevehicule:
+        menu: vehicle type menu
+        new: new vehicle type
+        show: show vehicle type
+        edit: edit vehicle type
+    vehicule:
+        menu: vehicle menu
+        new: new vehicle
+        show: shox vehicle
+        edit: edit vehicle
+    votrereservation: your reserving
+    votrerecherche: search
+    vehiculesdispo: available vehicles
+    votrereservation: your reserving
+    voscontrats: your contracts
+    contratspasses: contracts awarded
+    parlonsdevous: parlons de vous
+
+form:
+    categorie: category
+    type: type
+    datedepart: departure date
+    datearrivee: arrival
+    valider: validate
+    delete: delete
+    add:
+        new:
+            agence: add a new agency
+            contrat: add a new contract
+            forfait: add a new package
+            typevehicule: add a new  vehicle type
+            vehicule: add a new  vehicle
+        retour: back to the list
+
+
+footer:
+    create: created by LESPINASSE - TISSIER
+
+message:
+    index:
+        presentation: 
+            paragraphe: >
+                based in Nantes, LocIHM offers a set of high-end vehicles pampered by our teams to take you wherever you want!
+            paragraphe2: also take advantage of a wide range of commercial vehicles
+            items:
+                item1:
+                    keyword: reliable
+                    text: >
+                        our vehicles are maintained by us for you.
+                item2:
+                    keyword: flawless
+                    text: >
+                        polis like real jewelry
+                item3:
+                    keyword: effective
+                    text: >
+                        problem? no problem, our helpdesk help take care of you as soon as possible.
+        login:
+            msg: to reserve a vehicle, nothing is easier!
+            connexion: login
+            inscription: sign up
+
+    recherche:
+        pasdevehicule: no vehicle available
+    user:
+        nele: born
+        coordonnees: contact information
+        adresse: address
+        telephone: phone
+        telephoneport: cell phone
+        modifinfo: change my information
+        vosinfos: your information
+        votrecompte: your account
+        moncompte: my account
+    dashboard:
+        nbcontrats: you have %nbcontrats% contract(s) total
+        nbcontratsencours: you have %nbcontratsEc% contract(s) in progress
+        nbvoitures: you have %nbvoit% whose %nbtour% passenger cars and %nbutil% utility cars
+
+

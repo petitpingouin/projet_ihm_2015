@@ -60,5 +60,14 @@ class DefaultController extends Controller
         return $this->redirect($url);
     }
 
+    public function feedVehiculesAction()
+    {
+        $vehicules = $this->getDoctrine()->getRepository('LocIHMLocationBundle:Vehicule')->findAll();
+
+        $feed = $this->get('eko_feed.feed.manager')->get('Vehicule');
+        $feed->addFromArray($vehicules);
+
+        return new Response($feed->render('rss'));
+    }
     
 }

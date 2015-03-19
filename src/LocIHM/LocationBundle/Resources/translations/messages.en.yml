@@ -103,6 +103,7 @@ form:
 
 footer:
     create: created by LESPINASSE - TISSIER
+    info: This site was created as part of a student project
 
 message:
     index:

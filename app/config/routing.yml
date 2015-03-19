@@ -11,7 +11,7 @@ fos_user_security:
         _locale: fr|en
 
 fos_user_profile:
-    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    resource: "@LocIHMLocationBundle/Resources/config/routing/profile.xml"
     prefix: /{_locale}/user/profile
     requirements:
         _locale: fr|en

@@ -1,8 +1,9 @@
 loc_ihm_location:
     resource: "@LocIHMLocationBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
+    defaults: { _locale: fr }
     requirements:
-        _locale: fr|en
+        _locale: |fr|en
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -11,15 +11,15 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
 
 
-
+/*
+ * Controleur de la partie administration
+ */
 class AdminController extends Controller
 {
-	// ACCUEIL
-    public function indexAction()
-    {
-        return $this->render('LocIHMLocationBundle:Admin:index.html.twig');
-    }
-
+	
+    /**
+     * Page listant les utilisateurs de l'application
+     */
     public function usersAction()
     {
     	$userManager = $this->container->get('fos_user.user_manager');
@@ -32,19 +32,22 @@ class AdminController extends Controller
 
 
     /*
-     * $username => username
+     * Supprime un utilisateur
      */
     public function deleteUserAction($username, Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
     	$userManager = $this->get('fos_user.user_manager');
-    	$userdelete = $userManager->findUserByUsername($username);
+    	$userdelete = $userManager->findUserByUsername($username); // Récupère l'utilisateur
 
     	if (!is_object($userdelete) || !$userdelete instanceof UserInterface) {
+            // Vérification basique
             $request->getSession()->getFlashBag()->add('alert', 'Ca c\'est bizarre...');
         } else {
+            // Utilisateur existe
 	    	if($userdelete === $user) {
+                // Empêche le "suicide"
 	    		$request->getSession()->getFlashBag()->add('alert', 'Ne vous supprimez pas !');
 	    	} else {
 	    		$em->remove($userdelete);
@@ -56,6 +59,9 @@ class AdminController extends Controller
     	return $this->redirect($this->generateUrl('loc_ihm_location_admin_users'));
     }
 
+    /*
+     * Donne à un utilisateur le rôle ROLE_ADMIN
+     */
     public function promoteUserAction($username, Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
@@ -66,6 +72,7 @@ class AdminController extends Controller
     	if (!is_object($userPromote) || !$userPromote instanceof UserInterface) {
             $request->getSession()->getFlashBag()->add('alert', 'Ca c\'est bizarre...');
         } else {
+            // PROMOTION
     		$userPromote->addRole('ROLE_ADMIN');
     		$userManager->updateUser($userPromote);
 			$request->getSession()->getFlashBag()->add('notice', 'Utilisateur promu');
@@ -74,6 +81,9 @@ class AdminController extends Controller
     	return $this->redirect($this->generateUrl('loc_ihm_location_admin_users'));
     }
 
+    /*
+     * Donne à un utilisateur le rôle ROLE_USER
+     */
     public function demoteUserAction($username, Request $request)
     {
     	$em = $this->getDoctrine()->getManager();
@@ -85,6 +95,7 @@ class AdminController extends Controller
             $request->getSession()->getFlashBag()->add('alert', 'Ca c\'est bizarre...');
         } else {
         	if($userDemote === $user) {
+                // Empêche le sabordage
 	    		$request->getSession()->getFlashBag()->add('alert', 'Ne vous destituez pas !');
 	    	} else {
     			$userDemote->removeRole('ROLE_ADMIN');
@@ -96,11 +107,14 @@ class AdminController extends Controller
     	return $this->redirect($this->generateUrl('loc_ihm_location_admin_users'));
     }
 
+    /*
+     * Affiche l'accueil de l'administrateur
+     */
     public function dashboardAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-
+        // Statistiques destinées à un affichage
         $stats['nbContrats'] = $em->getRepository('LocIHMLocationBundle:Contrat')->countContrats();
         $stats['nbContratsEC'] = $em->getRepository('LocIHMLocationBundle:Contrat')->countContratsEnCours();
         $stats['nbVehicules'] = $em->getRepository('LocIHMLocationBundle:Vehicule')->countVehicules();

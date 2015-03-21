@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 //use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 
+/*
+ * Override le formulaire de modification de fosuserbundle
+ */
 class ProfileFormType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)

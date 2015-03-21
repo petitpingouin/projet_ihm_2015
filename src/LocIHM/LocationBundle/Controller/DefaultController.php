@@ -12,20 +12,27 @@ use LocIHM\LocationBundle\Entity\TypeVehicule;
 use LocIHM\LocationBundle\Form\RechercheVehHandler;
 
 
-
+/*
+ * Contrôleur par défaut
+ */
 class DefaultController extends Controller
 {
-	// ACCUEIL
+	/*
+     * Accueil
+     */
     public function indexAction(Request $request)
     {
 
         if($this->get('security.context')->isGranted('ROLE_USER')) {
 
         	// Création formulaire de recherche
+
+            // Entités des formulaires
         	$vehTourisme = new RechercheVehDispo('Tourisme', 'Tourisme');
             $vehUtilitaire = new RechercheVehDispo('Utilitaire', 'Utilitaire');
 
-        	 $formTourisme = $this->createForm(new rechercheVehDispoType($vehTourisme->getName(), $vehTourisme->getCategorie()), $vehTourisme, array(
+            // Formulaires
+        	$formTourisme = $this->createForm(new rechercheVehDispoType($vehTourisme->getName(), $vehTourisme->getCategorie()), $vehTourisme, array(
                 'action' => $this->generateUrl('loc_ihm_location_recherche'),
             ));
             $formUtilitaire = $this->createForm(new rechercheVehDispoType($vehUtilitaire->getName(), $vehUtilitaire->getCategorie()), $vehUtilitaire,array(
@@ -41,6 +48,9 @@ class DefaultController extends Controller
         }
     }
 
+    /*
+     * Switch le style du site
+     */
     public function changeStyleAction(Request $request)
     {
         // Récupère les var sessions
@@ -53,13 +63,20 @@ class DefaultController extends Controller
             $session->set('style', 'rouge');
         }
 
-        $url = $request->headers->get('referer');
+        $url = $request->headers->get('referer');   // récupère l'url d'origine
+
         if(empty($url)) {
+            // Redirection par défaut
             return $this->redirect($this->generateUrl('loc_ihm_location_homepage'));
         }
+
+        // Redirection
         return $this->redirect($url);
     }
 
+    /*
+     * Génère le flux RSS avec le bundle feedbundle et l'entité Vehicule
+     */
     public function feedVehiculesAction()
     {
         $vehicules = $this->getDoctrine()->getRepository('LocIHMLocationBundle:Vehicule')->findAll();

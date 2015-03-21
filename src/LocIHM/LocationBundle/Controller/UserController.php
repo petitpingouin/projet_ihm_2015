@@ -18,10 +18,14 @@ use LocIHM\LocationBundle\Form\RechercheVehHandler;
 use LocIHM\LocationBundle\Entity\Contrat;
 use LocIHM\LocationBundle\Form\ContratType;
 
-
+/*
+ * Contrôleur de la partie utilisateur
+ */
 class UserController extends Controller
 {
-    // Accueil de l'utilisateur
+    /*
+     * Accueil de l'utilisateur
+     */
     public function indexAction()
     {
     	$user = $this->getUser();
@@ -30,7 +34,7 @@ class UserController extends Controller
         }
         $em = $this->getDoctrine()->getManager();
 
-
+        // Récupération des contrats passé, en cours et futurs de l'utilisateur
         $contrats = $em->getRepository('LocIHMLocationBundle:Contrat')->getContratByDateAndUser($user);
         $contratsP = $em->getRepository('LocIHMLocationBundle:Contrat')->getContratPassedByDateAndUser($user);
 
@@ -42,16 +46,19 @@ class UserController extends Controller
         ));
     }
 
-	// Résultats de recherche de véhicule
+	/*
+     * Résultats de recherche de véhicule
+     */
     public function rechercheAction(Request $request)
     {
     	// Récupère les var sessions
     	$session = $request->getSession();
 
-        // Création formulaire
+        // Création entités formulaire
         $vehTourisme = new RechercheVehDispo('Tourisme', 'Tourisme');
         $vehUtilitaire = new RechercheVehDispo('Utilitaire', 'Utilitaire');
 
+        // Création formulaires
         $formTourisme = $this->createForm(new rechercheVehDispoType($vehTourisme->getName(), $vehTourisme->getCategorie()), $vehTourisme, array(
             'action' => $this->generateUrl('loc_ihm_location_recherche'),
         ));
@@ -59,14 +66,18 @@ class UserController extends Controller
             'action' => $this->generateUrl('loc_ihm_location_recherche'),
         ));
 
+        // Appel de la méthode de vérification personnalisée pour le premier formulaire
         $formHandlerTourisme = new RechercheVehHandler($vehTourisme, $formTourisme, $request);
+
         if($formHandlerTourisme->process()) {
             // Formulaire valide
             $em = $this->getDoctrine()->getManager();
 
+            // Variables utiles pour les système
             $session->set('reserv_dateDepart', $vehTourisme->getDateDepart());
             $session->set('reserv_dateArrivee', $vehTourisme->getDateArrivee());
 
+            // Récupère les véhicules disponibles pour la période donnée et le type choisi
             $contrats = $em->getRepository('LocIHMLocationBundle:Contrat')->getAllIdVehUseInContrat($vehTourisme->getDateDepart(), $vehTourisme->getDateArrivee());
             $veh = $em->getRepository('LocIHMLocationBundle:Vehicule')->getVehNotInContrat($vehTourisme->getType(), $contrats);
            
@@ -78,6 +89,7 @@ class UserController extends Controller
 
         }
 
+        // Appel de la méthode de vérification personnalisée pour le deuxième formulaire
         $formHandlerUtilitaire = new RechercheVehHandler($vehUtilitaire, $formUtilitaire, $request);
         if($formHandlerUtilitaire->process()) {
             // Formulaire valide
@@ -103,7 +115,9 @@ class UserController extends Controller
     }
 
 
-	
+	/*
+     * Enregistre un contrat
+     */
     public function reserverAction(Request $request)
     {
     	// Récupère les var sessions
@@ -121,12 +135,13 @@ class UserController extends Controller
         $contrats = $em->getRepository('LocIHMLocationBundle:Contrat')->getContratByDateAndIdVeh($idVeh, $dateDepart, $dateArrivee);
         $vehicule = $em->getRepository('LocIHMLocationBundle:Vehicule')->isVehDispo($idVeh, $contrats);
 
-        // Formulaire du forfait
+        // Formulaire de sélection du forfait
         $contrat = new Contrat();
         $contrat->setDateDebut($dateDepart);
         $contrat->setDateFin($dateArrivee);
         $contrat->setVehicule($vehicule);
 
+        // Si utilisateur est admin => sélection du client
         if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             $formBuilder = $this->createFormBuilder($contrat)
             ->add('forfait', 'entity', array(
@@ -141,6 +156,7 @@ class UserController extends Controller
             ));
         }
         else{
+            // Sinon rien de spécial
             if($user === null) {
                 // Par principe de sécurité
                 return $this->redirectToRoute('fos_user_security_login');
@@ -162,6 +178,7 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()) {
+            // Enregistrement
             $em->persist($contrat);
             $em->flush();
 
@@ -181,6 +198,9 @@ class UserController extends Controller
 
     }
 
+    /*
+     * Controleur AJAX et générant le JSON pour la sélection du forfait
+     */
     public function rechercherForfaitAction() {
     	$request = $this->get('request');
     	$serializer = $this->container->get('jms_serializer');
@@ -196,8 +216,8 @@ class UserController extends Controller
     	}
     }
 
-	/**
-	* Deletes a Contrat entity.
+	/*
+	* Supprime un contrat que si il appartient à l'utilisateur
 	*
 	*/
     public function deleteAction(Request $request, $id)

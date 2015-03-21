@@ -15,6 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/*
+ * OVERRIDE DU CONTROLEUR PROFILE DE FOSUSERBUNDLE
+ */
 class ProfileController extends BaseController
 {
     public function getParent()
@@ -22,8 +25,12 @@ class ProfileController extends BaseController
         return 'FOSUserBundle';
     }
 
+    /*
+     * Permet d'éditer un utilisateur passé en paramètre (impossible avant)
+     */
     public function editAction(Request $request, \LocIHM\LocationBundle\Entity\User $user=null)
     {
+        // Pas d'utilisateur donné en paramètre => modification de l'utilisateur connecté
         if($user == null) {
 	        $user = $this->getUser();
 	        if (!is_object($user) || !$user instanceof UserInterface) {

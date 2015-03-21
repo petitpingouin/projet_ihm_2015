@@ -6,6 +6,9 @@ use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/*
+ * Override le formulaire d'inscription de fosuserbundle
+ */
 class RegistrationFormType extends BaseType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
